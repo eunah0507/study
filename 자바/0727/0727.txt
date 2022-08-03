@@ -1,0 +1,36 @@
+7월 27일
+
+오늘은 StringBuffer와 Collection을 배웠어요.
+난수 발생공식은 이미 외웠으니 넘어갑니다~~
+
+[StringBuffer]
+
+: String의 연산은 내부적으로 StringBuffer클래스로 변환 후 처리
+  String  ->  StringBuffer  -> String  ->완료
+  그렇기 때문에 문자열이 변하는 경우에는 StringBuffer를 사용하는 것이 더 빠름
+ 
+
+++
+append("abc") : 뒤에 "abc"추가
+insert(a,"b") : a자리에 "b"삽입
+reverse() :  글자 반전시키기  =  for (int i = stbf.length()-1; i>=0;  i--) {
+                                  System.out.print(stbf.charAt(i)+"\t");  
+	                              }
+++
+            
+
+
+[Collection]
+
+- Vector
+ : 중복 가능( 얘도 List다)
+- ArrayList
+ : List는 중복 O, 순서 O
+ 
+
+요즘 대세는 ArrayList !!
+Vector는 어려우면 힘쓰지말고 넘어가자
+
+
+
+
