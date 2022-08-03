@@ -1,0 +1,103 @@
+Thread(쓰레드)
+
+: 컴퓨터는 실행할 프로그램을 메모리에 load 시켜놓고 CPU가 명령어를
+  하나씩 해석하면서 처리합니다. 이 때 하드디스크와 같은 보조 기억 장치에
+  저장되어 있는 프로그램을 메모리에 저장하게 됩니다.
+  하드 디스크에 들어있는 프로그램을 파일이라고 부르는 반면에
+  메모리에 적재된 프로그램을 Process(프로세스)라고 부릅니다.
+  
+  Thread는 프로세스 안에서 순차적으로 작동하는 명령어의 집합입니다.
+  순차적으로 실행되는 명령어들은 하나의 실로 꿸 수 있기 때문에
+  Thread(실)이라고 부릅니다.
+  어떤 프로그램(프로세스)에서는 여러개의 명령어가 독립적으로 실행되는
+  경우가 있는데 이런 경우를 다중 스레드라 합니다.
+  즉 Multi-Thread(다중 스레드)는 한개의 프로세스에서 독립적으로
+  처리되는 작업이 여러개 있는 경우입니다.
+  
+  : 자바에서 스레드는 java.lang.Thread클래스에서 상속받아 사용합니다. 
+    스레드를 사용하는 경우의 대부분은 동시에 두 가지 이상의 작업을 
+    처리할 때 입니다.
+    
+    . 프로세스는 특정한 작업을 처리하기 위해 메모리에 적재되어 있는
+      프로그램이고 스레드는 명령의 제어 흐름입니다. 즉 명령어가 
+      실행되는 순서의 흐름입니다
+    . 스레드는 프로세스 내부에서 독립적인 작업을 처리하는 명령어의 
+      집합입니다.
+      
+  스레드의 사용방법
+  
+  : 자바는 스레드를 사용하기 위해 두가지 방법을 제공합니다.
+    첫 번째는 java.lang.Thread 클래스를 상속받아 스레드를
+    생성하여 사용하는 방법이고
+    두 번째는 java.lang.Runnable 인터페이스를 implements해서
+    스레드를 생성하는 방법입니다.
+    
+    (자바는 단일상속만 받기 때문이다)
+    
+    1. class 클래스 이름 extends Thread
+    {
+    ...;
+    }
+    
+    
+    2. class 클래스 이름 extends 슈퍼클래스 implements Runnable
+    {
+    ...;
+    }
+    
+ Thread class 사용
+ 
+ 1. Thread 클래스를 상속받은 클래스를 선언한다.
+ 
+ 2. Thread 클래스의 추상 메소드인 run() 메소드를 재정의한다.
+ 
+ 	class Thread extends Thread
+ 	{
+ 		public void run()   => run() 메소드 재정의
+ 		{
+ 		...;
+ 		}
+ 	}
+ 	
+ 3. main() 메소드에서 Thread 클래스를 상속받은 클래스 객체를 생성한다.
+ 
+ 4. 생성된 객체를 사용해 start() 메소드를 호출한다.
+ 
+ 	public static void main (String[] args) {
+ 	
+ 		ThreadTest obj = new ThreadTest(); => 객체생성
+ 		obj.start();    				   => start() 메소드 호출
+ 		}
+ 		
+. Runnable 사용 방법 
+  
+   1. Runnable 인터페이스를 implements 하는 클래스를 정의한다.
+   
+   2. Runnable 인터페이스의 run() 메소드를 재정의합니다.
+   
+      class Runnable implements Runnable // Runnable 인터페이스 구현
+      {
+       public void run() // run()메소드 재정의
+       {
+       ...;
+       }
+      }
+   
+   3. main() 메소드에서 Runnable 인터페이스를 구현한 클래스 객체를 생성
+   
+   4. Thread 클래스 객체를 생성하면서 생성자에 3. 에서 생성한 객체를 매개변수로 전달
+   
+   5. 4.에서 생성한 객체를 사용해 start() 메소드 호출
+    
+      public static void main(String[] args)
+      {
+      	RunnableTest obj = new RunnableTest(); // 객체 생성
+      	
+      	Thread thread = new Thread(obj); // Thread 클래스 객체 생성
+      	
+      	thread.start(); // start() 메소드 호출
+      }      
+      
+      
+      
+      
