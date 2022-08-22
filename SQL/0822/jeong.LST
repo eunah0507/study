@@ -1,0 +1,49 @@
+SQL> select empno, deptno, ename, sal from emp;
+
+     EMPNO     DEPTNO ENAME             SAL                                                         
+---------- ---------- ---------- ----------                                                         
+      7369         20 SMITH             800                                                         
+      7499         30 ALLEN            1600                                                         
+      7521         30 WARD             1250                                                         
+      7566         20 JONES            2975                                                         
+      7654         30 MARTIN           1250                                                         
+      7698         30 BLAKE            2850                                                         
+      7782         10 CLARK            2450                                                         
+      7788         20 SCOTT            3000                                                         
+      7839         10 KING             5000                                                         
+      7844         30 TURNER           1500                                                         
+      7876         20 ADAMS            1100                                                         
+
+     EMPNO     DEPTNO ENAME             SAL                                                         
+---------- ---------- ---------- ----------                                                         
+      7900         30 JAMES             950                                                         
+      7902         20 FORD             3000                                                         
+      7934         10 MILLER           1300                                                         
+
+14 개의 행이 선택되었습니다.
+
+SQL> select ename, sal from emp;
+
+ENAME             SAL                                                                               
+---------- ----------                                                                               
+SMITH             800                                                                               
+ALLEN            1600                                                                               
+WARD             1250                                                                               
+JONES            2975                                                                               
+MARTIN           1250                                                                               
+BLAKE            2850                                                                               
+CLARK            2450                                                                               
+SCOTT            3000                                                                               
+KING             5000                                                                               
+TURNER           1500                                                                               
+ADAMS            1100                                                                               
+
+ENAME             SAL                                                                               
+---------- ----------                                                                               
+JAMES             950                                                                               
+FORD             3000                                                                               
+MILLER           1300                                                                               
+
+14 개의 행이 선택되었습니다.
+
+SQL> spool off
