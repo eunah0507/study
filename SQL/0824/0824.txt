@@ -1,0 +1,286 @@
+ORDER BY 절은 AND를 쓰지않고 , 로 이중처리를 한다.
+ORDER BY 절은 이중, 삼중 적용이 가능하다.
+
+  Q. emp 에서 사번, 이름, 급여를 출력하는데 이름이 빠른 사람부터 출력하세요
+
+    SELECT empno, ename, sal FROM emp ORDER BY ename ASC;
+
+. DUAL 테이블
+
+  : DUAL 테이블이란 SYS 사용자가 소유하는 테이블이며 모든 사용자가 사용할 수 있다.
+    한 행으로 결과를 출력하기 위한 테이블이다.
+    산술 연산이나 가상 컬럼 등의 값을 한번만 출력하고 싶을 때 많이 사용한다.
+    특정한 테이블을 생성할 필요없이 dual 테이블을 이용하여 
+    한 줄의 값을 리턴받을 수 있다.
+
+    ex) SELECT 24 * 50 FROM DUAL;
+
+    ex) SELECT sysdate-1 어제, sysdate 오늘, sysdate+1 내일 from dual;
+
+
+
+. 오라클 함수
+
+  . 숫자함수
+
+    구분			설명
+
+    ABS			절대값을 구함
+    COS			코사인 값을 반환
+    EXP			지수 값을 반환
+    FLOOR		소숫점 아래를 잘라냄
+    LOG			LOG값 반환
+    POWER		POWER(n, t) => n에 t승 값을 반환
+    SIGN		n < 0 => -1, n = 0 => 0, n > 0 => 1을 반환
+    SIN			사인 값 반환
+    TAN			탄젠트 값 반환
+    ROUND		특정 자릿수에서 반올림
+    TRUNC		특정 자릿수에서 잘라냄
+    MOD			나머지를 구함
+    CEIL		무조건 반올림
+
+  Q. 45.5645의 소수 세번째 자리에서 반올림 하여라
+
+    SELECT ROUND(45.5645,3) FROM DUAL;
+
+  Q. 45.564의 1의 자리에서 반올림 하여라
+
+     SELECT ROUND(45.564,0) FROM DUAL;
+
+  Q. ROUND 함수
+
+     SELECT 34.678, ROUND(68.678, -2) FROM DUAL; // 10의 자리에서 반올림 = 100
+
+     SELECT 34.678, ROUND(68.678, -1) FROM DUAL; // 1의 자리에서 반올림 = 70
+
+  Q. 절대값
+
+     SELECT -10, ABS(-10) FROM DUAL;
+
+  Q. FLOOR 함수
+
+     SELECT 34.678, FLOOR(34.678) FROM DUAL;
+ 
+  Q. TRUNC
+   
+     SELECT 35.567, TRUNC(35.567) FROM DUAL;
+
+     SELECT 35.567, TRUNC(35.567,1) FROM DUAL; // 소숫점이하 한자리까지 남기겠다는 뜻
+
+     SELECT 35.567, TRUNC(35.567,2,3) FROM DUAL; // 오류 // ORA-00939 : 함수의 인수가 너무 많습니다.
+
+ Q. 1200을 14로 나눈 나머지를 구하라
+
+   SELECT MOD(1200,14) FROM DUAL;
+
+ Q. 사원번호가 홀수인 사원들을 출력하시오
+
+   SELECT * FROM emp WHERE MOD(empno, 2) = 1;
+
+ Q. SIGN 함수 사용 // 양수인지 음수인지 판별하는 함수
+
+   SELECT SIGN(100) AS sign_value11
+   	  , SIGN(-100) AS sign_value22
+	  , SIGN(0) AS sign_value33
+	  , SIGN(NULL) AS sign_value44
+   FROM DUAL;
+
+ Q. CEIL 함수
+
+   SELECT CEIL(35.345), CEIL(-45.2344), CEIL(-35.678) FROM DUAL;
+   // 마이너스의 경우, 정수가 넘지 않는 정도에서 반올림(반올림 안된다고 보면 됨)
+
+
+
+
+. 문자 함수
+
+  구분			의미
+
+  LOWER			소문자로 변환
+  UPPER			대문자로 변환
+  INITCAP		첫 글자만 대문자로 변환하고 나머지는 소문자로 변환
+  CONCAP		문자의 값을 연결
+  SUBSTR		문자를 원하는 곳에서 잘라 추출(문자 단위)
+  SUBSTRB		"           "           바이트 단위
+  LENGTH		문자열의 길이 반환
+  LENGTHB		문자열의 길이 반환(바이트 단위)
+  INSTR			특정 문자의 위치 값을 반환
+  INSTRB		바이트 단위
+  LPAD, RPAD		입력받은 문자열과 기호를 정렬하여 특정 길이의 문자열로 반환
+  TRIM			잘라냄
+  CONVERT		CHAR SET 을 반환
+  CHR			ASCII Code 값으로 반환
+  ASCII			ASCII Code 값을 문자로 변환
+  REPLACE		문자열에서 특정 문자열로 변경
+
+
+  Q. LOWER 문제
+
+    SELECT 'Welcome to Oracle' "적용전", LOWER('Welcome to Oracle') "Lower 적용후" FROM DUAL;
+
+  Q. UPPER 문제
+
+    SELECT 'Welcome to Oracle' "적용전", UPPER('Welcome to Oracle') "UPPER 적용후" FROM DUAL;
+
+  Q. emp 테이블에서 'smith'이름을 갖는 사원을 출력하시오. //UPPER, LOWER 문제
+     단, 'smith' 그대로 사용하시오.
+
+    SELECT * FROM emp WHERE ename = UPPER('smith');
+    
+    SELECT * FROM emp WHERE LOWER(ename) = 'smith';
+
+  Q. INITCAP 문제
+
+    SELECT 'Welcome to Oracle' "적용전", INITCAP('Welcome to Oracle') "INITCAP 적용후" FROM DUAL;
+
+  Q. LENGTHB 문제
+
+    SELECT LENGTHB('ORACLE'), LENGTHB('오라클') FROM DUAL;
+
+  Q. INSTR 문제 // 대소문자를 구별한다.
+    
+    SELECT INSTR('Welcome to Oracle' , 'O') FROM DUAL;
+
+  Q. emp 테이블에서 ename, job 의 첫번째 글자를 대문자로 표현하세요. 
+
+    SELECT INITCAP(ename), INITCAP(job) FROM emp;
+
+
+.SUBSTR : 대상 문자열이나 컬럼의 자료에서 시작 위치부터 선택 개수만큼의 문자를 추출한다.
+	  
+	  
+	  ex) 인덱스 4부터 시작해서 문자 3개를 추출하는 쿼리문(오라클에서 인덱스는 0이 아닌 1부터 시작한다.)
+
+	  ex) SELECT SUBSTR('Welcome To Oracle', 4, 3) FROM DUAL;
+
+  Q. ora가 나오게 하시오
+
+    SELECT SUBSTR('Welcome To Oracle', 12, 3) FROM DUAL;
+
+  Q. 입사날짜 년/월/일 분리하기
+
+    SELECT ename, 19 || SUBSTR(hiredate, 1, 2) 년도, SUBSTR(hiredate, 4, 2) 달, SUBSTR(hiredate, 7,2) 일 FROM emp;
+
+    SELECT ename, CONCAT('19', SUBSTR(hiredate, 1, 2))년도, SUBSTR(hiredate, 4, 2)달, SUBSTR(hiredate, 7,2)일 FROM emp;
+    로도 표현 가능하다.
+
+  Q. emp테이블의 사원중에서 05월에 입사한 사원들의
+     이름, 월급, 입사일을 출력하는 쿼리문을 작성하시오
+     
+     SELECT ename, sal, hiredate FROM emp WHERE SUBSTR(hiredate, 4, 2) = '05';
+    
+
+  Q. emp 테이블의 사원중에서 이름의 마지막 글자가 'S'로 끝나는 사원의
+     이름, 월급, 직급을 출력하는 쿼리문을 작성하시오. (2가지 방법을 사용하시오)
+
+     SELECT ename, sal, job FROM emp WHERE ename LIKE('%S');
+     
+     SELECT ename, sal, job FROM emp WHERE SUBSTR(ename, length(ename),1) = 'S';
+
+     SELECT ename, sal, job FROM emp WHERE SUBSTR(ename, -1, 1) = 'ES';
+
+  Q. emp 테이블의 사원중에서 이름의 마지막 글자가 'ES'로 끝나는 사원의
+     이름, 월급, 직급을 출력하는 쿼리문을 작성하시오. (2가지 방법을 사용하시오)
+
+     SELECT ename, sal, job FROM emp WHERE SUBSTR(ename, -2, 2) = 'ES';
+
+     SELECT ename, sal, job FROM emp WHERE ename LIKE('%ES');
+
+     SELECT ename, sal, job FROM emp WHERE SUBSTR(ename, length(ename)-1, 2) = 'ES';
+
+  Q. emp 테이블의 사원 중에서 이름의 4번째 글자가 'E'인 사원의 
+     이름, 부서번호, 월급을 출력하는 쿼리문을 작성하시오 (3가지 방법)
+
+     SELECT ename, empno, sal FROM emp WHERE ename LIKE'___E%';
+
+     SELECT ename, empno, sal FROM emp WHERE SUBSTR(ename, 4, 1) = 'E'; 
+
+     SELECT ename, empno, sal FROM emp WHERE INSTR(ename, 'E', 4, 1) = 4;
+
+  Q. emp 테이블의 ename 컬럼에서 이름의 
+     마지막 글자가 'D'인 사원의
+     이름, 월급, 입사일을 출력하는 쿼리문을 작성하시오 (3가지 방법 LIKE/INSTR/SUBSTR)
+
+     SELECT ename, sal, hiredate FROM emp WHERE ename LIKE('%D');
+
+     SELECT ename, sal, hiredate FROM emp WHERE SUBSTR(ename, -1, 1) = 'D';
+
+     SELECT ename, sal, hiredate FROM emp WHERE SUBSTR(ename, LENGTH(ename), 1) = 'D';
+
+     SELECT ename, sal, hiredate FROM emp WHERE INSTR(ename, 'D',LENGTH(ename),1) = LENGTH(ename);
+
+     SELECT ename, sal, hiredate FROM emp WHERE INSTR(ename, 'D',-1,1) = LENGTH(ename);
+
+. SUBSTRB : 명시된 개수만큼의 문자가 아닌 바이트 수를 잘라낸다.
+
+SELECT SUBSTR('Welcome to Oracle' 3, 4), SUBSTRB('Welcome To Oracle, 3, 4) FROM DUAL;
+
+SELECT SUBSTR('웰컴투오라클', 3,4), SUBSTRB('웰컴투오라클, 3, 4) FROM DUAL; 
+// 한글은 한 글자당 2byte로 본다. // 한글자당 2byte 인데 예를들어 5byte까지 출력했을 때 마지막글자는? 안나온다.
+
+
+. LPAD / RPAD : 특정 기호로 채우는 함수
+
+   . LPAD(LEFT PADDING) : 오른쪽 정렬 후 왼쪽에 생긴 빈 공간에 특정 문자를 채우는 함수이다.
+
+     SELECT LPAD('ORACLE', 20, '#') FROM DUAL;
+
+   . RPAD(RIGHT PADDING) : 왼쪽 정렬 후 오른쪽에 생긴 빈 공간에 특정 문자를 채우는 함수이다.
+
+
+. LTRIM / RTRIM : 공백 문자를 삭제하는 함수이다.
+
+   . LTRIM : 문자열 왼쪽(앞)의 공백 문자들을 삭제한다.
+
+   . RTRIM : 문자열 오른쪽(뒤)의 공백 문자들을 삭제한다.
+
+     
+
+. TRIM     : 특정 문자를 잘라내는 함수이다.
+	     컬럼이나 대상 문자열에서 특정 문자가
+	     첫 번째나 마지막에 위치해있으면, 해당 특정 문자를 잘라낸 후
+	     남은 문자열만 반환한다.
+
+  ex) SELECT TRIM('a' FROM 'aaaaaaORACLEaaaa') FROM DUAL;
+      
+      SELECT 'korea', TRIM('    ORACLE     '), 'seoul' FROM DUAL;
+      //띄어쓰기같은 공백을 지워주는데 보통 쓰인다.
+
+
+. 날짜 함수
+  
+  : DATE(날짜)형에 사용하는 함수이다.
+    결과값은 날짜 또는 기간을 얻는다.
+    기간은 주로 일 단위로 계산한다(월 단위로 계산되는 경우도 있다.)
+
+    . 날짜 연산
+
+      . 날짜 + 숫자 : 그 날짜로부터 그 기간만큼 지난 날짜를 계산한다.
+      . 날짜 - 숫자 : 그 날짜로부터 그 기간만큼 이전 날짜를 계산한다.
+      . 날짜 - 날짜 : 두 날짜 사이의 기간을 계산한다.
+
+
+. SYSDATE
+  
+  : 현재 날짜를 반환하는 함수이다.
+    시스템에서 현재 날짜를 읽어와서 출력한다.
+
+    ex) SELECT SYSDATE FROM DUAL;
+
+
+  Q. emp 테이블의 사원들의 현재 까지의 근무 일자를 구하시오(소수점 이하는 반올림 하시오).
+
+    SELECT ename, ROUND(sysdate - hiredate) AS "근무일수", ROUND((sysdate-hiredate)/365,1) 근무연수 FROM emp;
+
+
+  Q. 여러분이 지금까지 먹은 밥그릇 수를 계산하시오. (단, 하루 3끼로 계산)
+
+   SELECT TO_NUMBER(SYSDATE - TO_DATE('1996/05/07','YYYY-MM-DD')) * 3 그릇 FROM DUAL;
+
+
+. MONTHS_BETWEEN : 두 날짜 사이의 개월수를 구하는 함수이다.
+
+ Q. emp 테이블에서 직원들이 근무한 개월 수를 구하는 쿼리문을 작성하시오
+
+   SELECT ename, SYSDATE, hiredate, ROUND((SYSDATE-hiredate),1) 근무일수, ROUND(MONTHS_BETWEEN(SYSDATE, HIREDATE),1) 근무개월수 FROM emp;
