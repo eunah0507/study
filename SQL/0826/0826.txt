@@ -1,0 +1,285 @@
+. GROUP 함수
+
+  구분				의미
+
+  SUM				그룹의 누적 합계를 반환
+  AVG				그룹의 평균을 반환
+  COUNT				그룹의 총 갯수를 반환
+  MAX				그룹의 최대값을 반환
+  MIN				그룹의 최소값 반환
+  STDDEV			그룹의 표준 편차를 반환
+  VARIANCE			그룹의 분산을 반환
+
+
+  VARIANCE(expr),	STDDEV(expr)   => standard deciation
+  VARIANCE는 분산을,	STDDEV는 표준편차를 구해 반환한다.
+
+  분산이란 주어진 범위의 개별 값과 평균값과의 차이인 편차를 구해
+  이를 제곱해서 평균한 값을 말하며,
+  표준편차는 분산 값의 제곱근이다. 분산은 제곱한 평균이므로,
+  실제로 통계에서는 평균을 중심으로 값들이
+  어느 정도 분포하는지를 나타내는 수치인 표준편차를 지표로 사용한다.
+
+  . SELECT문에 그룹함수를 사용하는 경우 그룹함수를 적용하지 않는
+  	단순 컬럼은 올 수 없습니다.
+
+	select ename, deptno, ROUND(sal, 0) from emp;
+
+	select SUM(sal) from emp;
+
+	select AVG(sal) from emp;
+
+	select COUNT(sal) from emp;
+
+
+	Q. 가장 최근에 입사한 사원의 입사일과 가장 먼저 입사한 사원의 입사일을 구하시오
+
+	select MAX(hiredate), MIN(hiredate) from emp;
+
+    Q. 30번 소속 사원중에서 커미션을 받는 사원의 수를 카운트 하시오(0을 받는 사원은 제외).
+
+	select count(*) from emp where deptno = 30 AND comm > 0;
+
+	select count(ename), count(*), count(comm) from emp;
+
+	
+
+. DISTINCT(중복배제)
+  
+  select count(deptno), count(distinct deptno) from emp;
+
+  select count(job), count(distinct job) from emp; // 갯수만
+   = select distinct(job) from emp; // 설명까지
+
+
+   Q. mgr 컬럼(상관의 사원번호)에서 중복을 배제하고 출력하시오
+
+   select distinct(mgr) from emp;
+
+   select count(distinct mgr) from emp;
+
+   Q. 입사날짜 중복제외
+
+   select distinct(hiredate) from emp;
+
+   Q. 사원번호 중복제외 (사원번호는 고유번호이기 때문에 14개 그대로 출력된다)
+
+   select distinct(empno) from emp;
+
+
+   . GROUP BY 절
+
+     : 특정 컬럼을 기준으로 그룹화하여 테이블에 존재하는 행들을
+	   그룹별로 구분하기 위해 사용한다.
+
+	 : 어떤 컬럼을 기준으로 그룹함수를 적용해줄지 기술해 주어야 할 경우에
+	   select 문에 GROUP BY 절을 추가해 절 뒤에 해당 컬럼을 기술한다.
+
+
+	   형식
+
+	   SELECT 컬럼명, 그룹함수
+	   FROM 테이블명
+	   WHERE 조건
+	   GROUP BY 컬럼명
+
+	   ex) select deptno, AVG(sal) from emp GROUP BY (deptno);
+
+	   select deptno, SUM(sal), AVG(sal) from emp GROUP BY (deptno);
+
+	   select deptno from emp GROUP BY deptno;
+	   = select DISTNCT deptno from emp;
+
+
+	   Q. 소속 부서별 사원의 수와 커미션을 받는 사원의 수를 카운트 하시오(커미션0도 카운트한다.) **
+
+	   select deptno, count(*), count(comm) from emp group by deptno;
+
+	   Q. emp 테이블에서 년도 별로 사원들이 몇명 입사했는지 카운트 하시오
+
+	   select SUBSTR(hiredate,1,2) "년도", count(*) from emp group by SUBSTR(hiredate, 1,2);
+
+	   select to_char(hiredate, 'YYYY'), count(*) from emp group by to_char(hiredate, 'YYYY');
+
+	   select count(decode(to_char(hiredate,'YYYY'), '1980', 1)) as "1980",
+	   		  count(decode(to_char(hiredate,'YYYY'), '1981', 1)) as "1981",
+			  count(decode(to_char(hiredate,'YYYY'), '1982', 1)) as "1982",
+			  count(decode(to_char(hiredate,'YYYY'), '1987', 1)) as "1987"
+	   from emp;
+
+	   Q. emp 테이블에서 월별로 사원들이 몇 명 입사했는지 카운트하시오.
+
+	   select SUBSTR(hirdate, 4,2) "월별" , count(*) from emp group by substr(hiredate, 4,2);
+
+	   select to_char(hiredate, 'MM'), count(*) from emp group by to_char(hiredate, 'MM');
+
+	   select count(decode(to_char(hiredate,'MM'), '01', 1)) as "01",
+	   		  count(decode(to_char(hiredate,'MM'), '02', 1)) as "02",
+			  count(decode(to_char(hiredate,'MM'), '03', 1)) as "03",
+			  count(decode(to_char(hiredate,'MM'), '04', 1)) as "04",
+			  count(decode(to_char(hiredate,'MM'), '05', 1)) as "05",
+			  count(decode(to_char(hiredate,'MM'), '06', 1)) as "06",
+			  count(decode(to_char(hiredate,'MM'), '07', 1)) as "07",
+			  count(decode(to_char(hiredate,'MM'), '08', 1)) as "08",
+			  count(decode(to_char(hiredate,'MM'), '09', 1)) as "09",
+			  count(decode(to_char(hiredate,'MM'), '10', 1)) as "10",
+			  count(decode(to_char(hiredate,'MM'), '11', 1)) as "11",
+			  count(decode(to_char(hiredate,'MM'), '12', 1)) as "12"		
+	   from emp;
+
+	   => 문자형으로 바꾼 입사년도를 1980년과 비교를 하여서 true 이면 1의 값을 주었다.
+	      (decode 1번식, '1980, 1)
+		  1의 값을 준 (1980년도)것을 count 하였다.
+
+
+. HAVING 절
+  
+  : GROUP BY 절에 의해 생성된 결과 값 중 원하는 조건에
+    부합하는 자료만 보고자 할 때 사용한다.
+
+  : SELECT 절에 조건을 사용하여 결과를 제한할때는 WHERE 절을 사용하며,
+    그룹의 결과를 제한할때는 HAVING절을 사용합니다.
+
+  Q. 부서별 평균급여를 구하고 그 결과 평균급여가 2000이상인 부서만 출력하시오.
+
+    select deptno, AVG(sal) 
+	from emp 
+	group by deptno
+	HAVING AVG(sal) >= 2000;
+
+  Q. 1981년 5월 31일 이후 입사자 중에서 커미션이 NULL 이거나,
+  	 0인 사원의 커미션은 500으로 하고, 그렇지 않으면 기존 커미션을 출력하라. **
+
+	select ename 입사자 , hiredate,
+						DECODE(comm, NULL, 500,
+										0, 500,
+										comm)커미션
+    from emp
+	where hiredate > to_date(19810531)
+	OREDR BY ename;
+
+ Q. 부서별 최대 값과 최소값을 구하되, 최대 급여가 2900 이상인 부서만 출력하시오
+
+   select deptno, MAX(sal), MIN(sal) 
+   from emp 
+   group by deptno
+   having MAX(sal) >= 2900;
+
+
+ Q. 부서별 평균 급여를 구하고, 그 결과 평균 급여가 2000 이상인 부서만 출력하시오.
+
+   select deptno, AVG(sal) 
+   from emp 
+   group by deptno
+   having AVG(sal) >= 2000;
+
+ Q. 급여가 1000 이상인 사람들로 부서별 평균급여를 구하고,
+    그 결과 평균 급여가 2000이상인 부서만 출력하시오.
+
+   select deptno, AVG(sal) from emp
+   where sal > 1000
+   group by deptno
+   having AVG(sal) >= 2000;
+
+
+   select job, count(*) cnt
+   from emp
+   where deptno IN(10,20,30)
+   GROUP BY job
+   HAVING count(*) > 2;
+
+ Q. 이름에 'LA'가 들어있지 않고,
+    JOB의 합이 3000 이상인 JOB그룹과
+	JOB에 속한 사원수를 출력하시오 ** 
+
+	JOB, 카운트, 합 형식으로 나오게 하시오
+
+	select job, count(*), SUM(sal)
+	from emp
+	where ename not like '%LA%'
+	group by job
+	having SUM(sal) >= 3000;
+
+ 
+ . JOIN(조인)
+
+   : 관계형 데이터 베이스는 두 개 이상의 테이블에 정보가 나누어져 있습니다.
+     중복해서 데이터를 저장하는 것을 지양하기 때문입니다.
+
+	 각각의 테이블에 분리 되어 있는 연관성있는 데이터들을 연결하거나
+	 조합하여 데이터를 사용할 수 있다면 중요한 정보로서 가공될 수 있으며
+	 이런 작업들을 JOIN(조인) 이라고 합니다.
+
+	 여러 테이블에 흩어져 있는 정보 중에서 사용자가 필요한 정보만 가져와서
+	 가상의 테이블처럼 만들어서 결과를 보여준다.
+
+
+	 종류						의미
+
+	 Equi Join				동일 컬럼을 기준으로 조인
+	 Non_Equi Join			동일 컬럼이 없이 다른 조건을 사용하여 조인
+	 Outer Join				조인 조건에 만족하지 않은 로우도 나타냄
+	 Self Join				한 테이블 내의 조인
+
+
+	 . Cross Join  = (Cartesian Product : 카티션 곱)
+
+	   : 2개 이상의 테이블이 조인될 때 WHERE 절에 의해 공통되는 컬럼에 의한 결합이
+	     발생하지 않는 경우의 의미
+  
+  Q. 'DALLAS'에서 근무하는 사원의 이름과 직급과 월급과 근무지를 출력하시오.
+
+    select deptno from dept where LOC = 'DALLAS';
+	select ename, job, sal from emp where deptno = 20;
+			||
+	select e.ename, e.job, e.sal, d.loc 
+	from emp e, dept d
+	where e.deptno = d.deptno AND d.loc = 'DALLAS';
+
+
+  Q. 'RESEARCH' 부서에서 근무하는 사원들의 이름, 입사일과 월급과
+      근무지, 근무부서명을 출력하는 쿼리문을 작성하시오
+
+      select e.ename, e.hiredate, e.sal, d.loc, d.dname
+      from emp e, dept d
+      where e.deptno = d.deptno AND d.dname = 'RESEARCH';
+
+  Q. 직급이 'MANAGER'인 사원의 이름, 월급, 근무지를 출력하는
+     쿼리문을 작성하시오
+
+     select e.ename, e.sal, d.loc
+     from emp e, dept d
+     where e.deptno = d.deptno AND e.job = 'MANAGER';
+
+  Q. 'ACCOUNTING' 부서 소속 사원들의 이름과 입사일과 근무지를 출력하시오.
+
+     select e.ename, e.hiredate, d.loc
+     from emp e, dept d
+     where e.deptno = d.deptno AND d.dname = 'ACCOUNTING';
+
+
+. Non Equi Join
+
+  : 동일 컬럼이 없이 다른 조건을 사용하여 조인할 때 쓰인다.
+
+  EQUI JOIN과 NON-EQUI JOIN의 차이점
+    
+    EQUI JOIN : JOIN조건에 서로 다른 조건(=)을 가진 데이터를 JOIN해서 가져오는 방법
+    NON-EQUI JOIN : 같은 조건이 아닌 크거나 작거나 하는 경우 JOIN을 수행하는 방법
+
+      : NON-EQUI JOIN은 조인 조건이 특정 범위내에 있는지를 조사하기 위해
+        WHERE절의 조인 조건으로 = 연산자와 비교 연산자를 사용합니다.
+
+
+  Q. 각 사원의 급여가 몇 등급인지 살펴보문 쿼리문을 작성하시오.
+
+     select e.ename, e.sal, s.grade 
+     from emp e, salgrade s
+     where e.sal BETWEEN s.losal AND s.hisal;
+
+  Q. emp 테이블의 사원 이름과 소속 부서명, 급여의 등급을 출력하는 쿼리문
+     (사원테이블에는 부서 이름과 급여 등급은 없고, 부서 번호와 급여만 있다.)
+
+     select e.ename, d.dname, s.grade
+     from emp e, dept d, salgrade s
+     where (e.deptno = d.deptno) and e.sal BETWEEN s.losal AND s.hisal;
