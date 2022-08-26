@@ -1,0 +1,234 @@
+     . ADD_MONTHS : 특정 개월수 더한 날짜를 구하는 함수이다
+     
+        문제 : emp 테이블에서 입사 날짜에서 4개월을 추가한 결과값을 나타내는 쿼리문
+              SELECT ENAME,HIREDATE ,ADD_MONTHS(HIREDATE, 4) FROM EMP;     
+          
+     .NEXT_DAY  : 헤당 날짜부터 시작하여 명시된 요일을 만나면, 해당되는 날짜를 반환하는 함수이다.
+     
+       문제 : 오늘을 기준으로 가장 가까운 다음 수요일은 언제인지 앓아보는 쿼리문
+             SELECT SYSDATE,NEXT_DAY(SYSDATE, '수요일') FROM EMP;   
+          
+       SELECT SYS_CONTEXT('USERENV', 'LANGUAGE')"NLS SET" from dual;  //지금 언어 설정 어떻게 된건지 알아볼 때
+       
+       ALTER SESSION SET NLS_LANGUAGE='AMERICAN'; //언어 기본 설정 변경 : 한국어설정일 때 영어로 바꿔주는 것 
+          
+    select * from nls_session_parameters
+             where PARAMETER in 
+                              ('NLS_LANGUAGE', 'NLS_TERRITORY','NLS_DATE_FORMAT',
+                               'NLS_DATE_LANGUAGE','NLS_SORT');      //설정된 값들을 볼 수 있어
+                               
+   .LAST_DAY : 해당 달의 마지막 날짜를 반환하는 함수이다.
+   
+      문제 : emp테이블에서 입사한 달의 마지막 날을 구하는 쿼리문
+           SELECT HIREDATE, LAST_DAY(HIREDATE) from emp;                            
+          
+   .형 변환 함수 (숫자형, 문자형, 날짜형)
+    : 숫자,문자,날짜의 데이터형을 다른 데이터형으로 변환하는 함수이다.
+    : 오라클을 사용하다 보면 숫자, 문자, 날짜의 데이터를 다른 데이터 형으로 
+      변환해야 하는 경우가 있습니다. 이럴 때 사용하는 함수가 형 변환 함수이다.
+      
+      
+      구분                     의미
+      TO_CHAR                날짜형 또는 숫자형을 문자형으로 변환
+      TO_NUMBER              문자형을 숫자형으로 변환
+      TO_DATE                문자형을 날짜형으로 변환
+      
+      
+      
+               ->TO_CHAR               ->TO_DATE
+      Number               Character                Date
+               TO_NUMBER<-             TO_CHAR<- 
+               
+               
+      .TO_CHAR(닐짜데이터,'출력형식')
+      
+      날짜 FORMAT 형식
+      YYYY          년도 표시 4자리
+      YY            년도 표시 2자리
+      MM            월을 숫자로 표시
+      MON           월을 알파벳으로 표현
+      DAY           요일 표현
+      DY            요일을 약어로 표시
+      
+      
+      시간 FORMAT 형식 
+      
+      AM/PM            오전/오후표시
+      HH/HH12          시간(1~12)
+      HH24             시간(0~23) 24시간 표시
+      MI               분을 표현
+      SS               초를 표현
+      
+      숫자 FORMAT 형식
+      
+      0                자릿수를 나태내며 자릿수가 맞지 않을 경우 0으로 채움
+      9                자릿수를 나타내며 자릿숙사 맞지 않을 경우 채우지 않음
+      L                각 지역 통화 기호를 표시
+      .                소수점을 표현
+      ,                천단위 자리 구분
+      
+      문제 : 현재 날짜를 문자형으로 변환하여 출력하는 쿼리문
+            SELECT SYSDATE,TO_CHAR(SYSDATE,'YYYY-MM-DD') from dual;
+      문제 : emp 테이블에서 사원들의 입사일을 출력하되, 요일까지 함꼐 출력하는 쿼리문
+      
+            select hiredate, to_char(hiredate,'YYYY-MM-DD DY') from emp;      
+            select hiredate, to_char(hiredate,'YYYY-MM-DD DAY') from emp;      
+      문제 : 현재 날짜와 시간을 출력하는 쿼리문
+            select sysdate,to_char(sysdate,'YYYY-MM-DD HH24:MI.SS') from dual;
+            
+    .L :  각지역 별 통화(돈단위) 기호를 앞에 붙이고 천 단위마다 콤마를 붙여서 출력하는 쿼리문
+          select ename,sal,TO_CHAR(sal,'L999,999') from emp;   
+          select ename,sal,TO_CHAR(sal,'L000,000') from emp;   
+            
+      
+     .TO_DATE 
+      : 문자형을 날짜형으로 변환하는 함수이다.
+        날짜형을 세기, 연도, 월, 일, 시간, 분, 초와 같은 날짜와 시간에 대한 정보를 저장한다.
+        기본 날짜형식은 'YY/MM/DD'형식으로 '년/월/일'을 나타낸다.
+        
+        문제 : 1981년 2월 20일에 입사한 사원을 검색하는 쿼리문
+              SELECT ENAME,HIREDATE from emp where HIREDATE=19810220; //형 불일치
+             =>에러 이유는 입사일 컬럼의 데이터 형은 DATE이므로 WHERE절에 숫자형으로
+               기술하면 데이터형이 일치하지 않기 떄문에 오류가 발생한다.
+               오류가 발생하지 않게 하려면, 비교할 두 데이터의 자료형태를 맞추어야 한다.           
+              
+             
+              SELECT ENAME,HIREDATE from emp where HIREDATE='19810220'; //이러면 해결되긴 함
+              SELECT ENAME,HIREDATE from emp where HIREDATE=TO_DATE(19810220,'YYYY/MM/DD'); //이게 형변환(TO_DATE : 날짜 형식 바꿀 수 있어~)
+              
+        문제: 2021년12월20일에서 오늘까지 며칠이 지났나요? 
+             select sysdate, trunc(sysdate-to_date('2021/12/20','YYYY/MM/DD')) from dual; //to_date 안 하고 그냥 빼면 안돼~!~!~!(,'YYYY/MM/DD'))=>포맷형식 꼭 적어주기
+                        
+              
+      
+      
+      .TO_NUMBER
+       : select '20,000'-'10,000' from dual;//수치가 부적합합니다.
+       : select TO_NUMBER('20,000','99,999')-TO_NUMBER('10,000','99,999') from dual; //해결~ 숫자형식을 사용할 때도 to_date와 마찬가지로 포맷 형식이 필요하다ㅣ
+       
+       문제 : emp테이블에서 급여를 \88,950처럼 나오게 하고 
+             이름      급여      형식으로 출력하세요
+             SMITH   \88,980
+             
+             select ename 이름,to_char(sal,'L999,999')급여 from emp;
+             select ename as "이름",to_char(sal,'L999,999')as "급여" from emp;
+      
+     .NUL 함수 (NVL)
+       : NULL 값을 0 또는 다른 값으로 변환하기 위해 사용하는 함수
+         select * from emp where mgr is NULL; 
+         
+       문제 : 커미션을 받지 않은 사원의 월급을 1500원 인상해 지급하고
+             comm 컬럼에 인상된 금액을 표시하세요
+             단, 숫자0은 받는 걸로 취급한다.
+             
+             select ename 이름,sal 월급, NVL(comm,sal+1500) from emp where comm is null;  
+             select ename,sal,comm,nvl(comm,1500)"인상 금액" , NVL(comm,sal+1500) "인상된 월급" from emp where comm is null;
+             //NVL(comm,sal+1500)처럼 null값 대신 출력하는 값이 꼭 0이 아니어도 돼 
+       문제 : 09월에 입사한 사원의 comm을 2000 추가하여 월급을 산출하세요
+            sal+comm값이 나오도록 쿼리를 만드세요~
+            
+       내가 푼 거: select ename, sal, comm+2000,sal+comm+2000 ,hiredate from emp where Substr(hiredate,4,2) ='09';
+       (결과는 나왔지만,, 정답은 아니님 ㅠ0ㅠ)     
+            
+            select ename, hiredate,sal,comm,sal+NVL(comm,2000) as "인상된 월급" from emp where substr(hiredate,4,2)='09'; //오류 왜냐면 nvl은 널일 때 더해주기 때문에 틀린거야
+      정답 : select ename, hiredate,sal,comm,sal+NVL(comm,0)+2000 as "인상된 월급" from emp where substr(hiredate,4,2)='09';
+            //sal+NVL(comm,0)+2000 : 널값이 있다면 0으로 만들고 2000원을 더하자~~
+            
+            
+     **문제 : emp테이블에서 상관이 없는 사원만 출력하되 MGR 컬럼에 null 대신 'CEO'라고 출력되도록 하세요//난이도 최상급 문제...ㅇㅠㅇ
+            select empno, ename,sal,NVL(to_char(mgr,'9999'),'CEO') mgr from emp where mgr is null ;
+            //to_char(mgr,'9999')=> 9999는 폭 설정이라고 생각하면 돼
+      
+  .음수 표시
+   select to_char(-7856,'99,999PR') from dual;    //음수 표시가 <7856>로 되는 방법
+   select to_char(-7856,'99,999MI') from dual;    //음수 표시가 7856-로 되는 방법(부호가 뒤로 갔네?)
+   
+  .DECODE : 여러가지 경우에 대해서 선택할 수 있도록 하는 기능을 제공한다.
+            (SWITCH CASE 문과 같은 기능이다.)
+            
+            형식
+            
+             DECODE(표현식, 조건1,결과1,
+                          조건2,결과2,
+                           |
+                           기본결과)
+                           
+                           
+      문제 : select deptno,decode(deptno,10,'A',
+                                        20,'B',
+                                        'DEFAULT')
+            from emp
+            order by deptno;                                                   
+            
+            select deptno,decode (deptno,10, 'ACCOUNTING',
+                                         20, 'RESEARCH',
+                                         30, 'SALES',
+                                         40, 'OPERATIONS') as DNAME
+            from emp;                             
+    
+    문제 : 직급에 따라 급여를 인상합니다.
+          직급이 ANALYST  인 사원은 5%인상
+               Salesman        10%
+               MANAGER         15%
+               CLERK           20%인상한 금액 출력
+     select ename,sal,job, decode (job,'ANALYST',sal*1.05,                                     
+                                        'SALESMAN',sal*1.10,
+                                        'MANAGER',sal*1.15,
+                                        'CLERK',sal*1.20,
+                                        sal) as "인상된 월급"
+                                        from emp;        
+                                        
+    문제 : 이름 글자수에 따라 월급을 인상합니다. 
+          4글자 10%
+          5글자 20%
+          6글자 30% 인상한 결과를 작성하세요
+          
+          select ename,sal,decode(length(ename),4,sal*1.05,
+                                                5,sal*1.20,
+                                                6,sal*1.30,
+                                        sal)as "인상된 월급"
+                                        from emp;                                    
+   
+  . CASE 함수
+     : 조건에 따라 서로 다른 처리가 가능한 CASE함수
+     
+       여러가지 경우에서 하나를 선택하는 함수이다
+       DECODE 함수는 조건이 일치(=) 하는 경우에만 적용하지만
+       CASE 함수는 다양한 비교 연산자를 사용하여 조건 제시 및 범위 지정을 
+       할 수 있다는 점이 차이점이다
+       
+       중첩 if~ else 문과 같다.                                         
+      
+      문제 : 부서 번호에 해당하는 부서명을 구하는 쿼리문을 작성하세요
+            SELECT ename, deptno,
+                   case when deptno = 10 then 'ACCOUNTING'
+                        when deptno = 20 then 'RESEARCH'
+                        when deptno = 30 then 'SALES'
+                        when deptno = 40 then 'OPERATIONS'
+                        else 'default'
+                        end as dname
+             from emp;           
+            
+      문제 : 직급에 따라 급여를 인상합니다.
+            직급이 'ANALYST'인 사원은 5%인상
+                  SALESMAN       10
+                  MANAGER        15
+                  CLERK          20%인상한 금액을 출력
+                  
+            SELECT ename, job, sal, case when job='ANALYST' then sal*1.05 when job='SALESMAN' then sal*1.10 when job='MANEGER' then sal*1.15 when job='CLERK' then sal*1.20  else sal end as "인상된 금액" from emp;
+      
+          문제 : 이름 글자수에 따라 월급을 인상합니다. 
+          4글자 10%
+          5글자 20%
+          6글자 30% 인상한 결과를 작성하세요
+          
+          select ename,length(ename), job, sal, case when length(ename)=4 then sal*1.10 when length(ename)=5 then sal*1.20 when length(ename)=6 then sal*1.30 else sal end as "UP SAL" from emp;
+    
+   문제 : 직급이 MANAGER인 사람 중에 부서 번호가 10이면 'NEW YORK'
+                                       20이면  'Dallas'
+                                       그 외는 'Unknown'으로 나오게 하세요 
+          select ename,job, deptno, case when deptno = 10 then 'NEW YORK' when deptno = 20 then 'Dallas' else 'Unknown' end as "근무지" from emp where job = 'MANAGER';                 
+          //then'ㅁ' ㅁ안에 들어가는 문자는 대소문자가 구분된다  ex.then 'Dallas' => 출력 Dallas             
+     
+           select ename,job, deptno, case when deptno = 10 then 'NEW YORK' when deptno = 20 then 'Dallas' end as "근무지" from emp where job = 'MANAGER'; 
+           //만약 else를 쓰지 않는다면 조건에 맞지 않는 조건의 없는 항목은 null값이 출력된다                           
