@@ -1,0 +1,245 @@
+. 사용자(USER)
+
+ : 오라클 데이터베이스를 활용하여 새로운 서비스를 구축한다면
+   테이블을 비롯한 여러 객체가 필요할 것입니다.
+   지금까지 사용한 scott계정은 오라클 사에서 제공하는
+   계정으로 보안에 문제가 있습니다.
+   
+   따라서 scott계정 이외에 오라클 데이터 베이스에 접속할 수 있는
+   새로운 계정이 필요합니다.
+   이렇게 오라클 데이터 베이스에서는 데이터베이스에 접속하여
+   데이터를 관리하는 계정을 user(사용자)라고 표현합니다.
+   
+   
+   . 데이터베이스 관리자
+   
+     . 사용자가 데이터베이스의 객체에 대한 특정 권한을
+       가질 수 있도록 한다.
+       
+     . 다수의 사용자가 데이터베이스에 저장된 정보를 공유 하면서도
+       정보에 대한 보안이 이루어지도록 한다.
+       
+     . 데이터베이스에 접근하기 위햇는 사용자가 
+       이름과 암호를 입력해서 로그인이 이루어지도록 한다.
+       
+     . 사용자마다 서로 다른 권한을 부여함으로써 보안을 설정한다.
+     
+     
+   . 권한
+    
+     . 사용자가 특정한 테이블에 접근할 수 있도록 하거나
+       해당 테이블에 select, insert, update, delete를 사용할 수 있도록
+       제한을 두는 것이다.
+       
+     . 데이터베이스 권한은 시스템 권한과 객체 권한으로 나뉜다.
+     
+       . System Privileges : 사용자의 생성과 제거, DB 접근 및
+                             각종 객체를 생성할 수 있는 권한
+                             주로 DBA에 의해 부여
+                             
+       . Object Privileges : 객체를 조작할 수 있는 권한
+       
+    . 데이터베이스 관리자가 가지고 있는 시스템 권한
+    
+      CREATE USER 			새롭게 사용자를 생성하는 권한
+      
+      DROP USER				사용자를 삭제하는 권한
+      
+      DROP ANY TABLE 		임의의 테이블을 삭제할 수 있는 권한
+      	
+      QUERY REWRITE			함수 기반 인덱스를 생성하는 권한
+      
+      BACK UP ANY TABLE		임의의 테이블을 백업할 수 있는 권한
+      
+      
+    . 데이터베이스를 관리하는 권한으로 시스템 관리자가 사용자에게 부여하는 권한
+    
+      CREATE SESSION 		데이터베이스에 접속할 수 있는 권한
+      
+      CREATE TABLE 			사용자 스키마에서 테이블을 생성할 수 있는 권한
+      
+      CREATE VIEW			사용자 스키마에서 뷰를 생성할 수 있는 권한
+      
+      CREATE SEQUENCE		사용자 스키마에서 시퀀스를 생성할 수 있는 권한
+      
+      CREATE PROCEDURE		사용자 스키마에서 함수를 생성할 수 있는 권한
+      
+    
+    . Schema(스키마) : 데이터베이스 구조와 제약조건에 관한 전반적인 명세를 기술한 것
+    				 객체의 특성을 나타내는 속성과 속성들의 집합으로 이루어진 객체
+    				 객체사이에 존재하는 관계에 대한 정의와 ㅇ이를 유지하기 위해 
+    				 해야할 제약 조건들을 기술한 것
+    		
+    				 
+    . 사용자 생성	
+    
+      : 부서나 사원의 직무에 따라 사용하는 테이블을 고려해서
+        오라클 데이터베이스 관리자는 사용자 계정을 발급한다.
+        
+        CREATE USER 사용자명
+        IDENTIFIED BY 비밀번호	
+        
+
+        1.
+        show user ( = scott계정 나옴)
+        conn system/oracle11g (= system 계정으로 연결)
+        
+        2.
+        CREATE USER FIRSTORA
+        IDENTIFIED BY korea123
+        
+        CREATE USER SCEONDORA
+        IDENTIFIED BY korea123
+        
+        3.
+        SQL> conn firstora/korea123
+		ERROR:
+		ORA-01045: user FIRSTORA lacks CREATE SESSION privilege; logon denied
+
+
+		경고: 이제는 ORACLE에 연결되어 있지 않습니다.
+		
+		4.
+		show user( = "" null값으로나옴)
+		
+		conn system/oracle11g ( 다시 연결)
+		
+		. 권한 부여
+		
+		  GRANT 권한
+		  TO 	사용자 => 새로 생성된 FIRSTORA에 데이터베이스 접속 권한 부여
+		  
+		grant CREATE SESSION 
+		to FIRSTORA;
+		
+		5.
+		create table emp_test(
+		empno number(5),
+		ename varchar2(30),
+		sal number(7,2)); 
+	
+		1행에 오류:
+		ORA-01031: 권한이 불충분합니다
+		
+		6.
+		SQL> conn system/oracle11g
+		연결되었습니다.
+		SQL> show user
+		USER은 "SYSTEM"입니다
+		
+		7.
+		grant create table to FIRSTORA;
+		
+		권한이 부여되었습니다.
+		
+		8.
+		conn firstora/korea123
+		연결되었습니다.
+		SQL> show user
+		USER은 "FIRSTORA"입니다
+		
+		9.
+		create table emp_test(
+		empno number(5),
+		ename varchar2(30),
+		sal number(7,2)); 
+		
+		테이블이 생성되었습니다.
+		
+		끝.
+		
+		이렇게 하면 하나하나씩 다 권한을 부여해줘야한다. 귀찮지않게 한 번에 하려면 role을 부여해준다.
+		
+		
+		. 데이터베이스 ROLE 권한제어
+		
+		  : ROLE은 사용자에게 보다 간편하게 권한을 부여할 수 있도록
+		    여러개의 권한을 묶어 놓은 권한의 집합이며 사용자
+		    또는 다른 롤에 부여합니다.
+		    
+		    사용자를 생성했으면 그 사용자에게 각종 권한을 부여해야
+		    생성된 사용자가 데이터베이스르 사용할 수 있습니다.
+		    
+		    .CONNECT : 사용자가 데이터베이스에 접속할 수 있도록
+		    		   가장 기본적인 시스템 권한 8가지를 묶어놓음
+		    		   
+		    		   . ALTER SESSION, CREATE CLUSTE,
+		    		     CREATE DATAVASE LINK,
+		    		     CREATE SYNONYM, CREATE TABLE, CREATE VIEW
+		    		     
+		    . RESOURCE : 사용자가 객체를 생성할 수 있도록
+		    			 시스템 권한을 묶어놓음
+		    			 
+		    			 . CREATE CLUSTER, CREATE PROCEDUER,
+		    			   CREATE SEQUENCE, CREATE TABLE, CREATE TRIGGER
+		    			   
+		    . DBA : 사용자들이 소유한 데이터 베이스 객체들을 관리하고
+		    		사용자들을 작성하고 변경하고 제거할 수 있는
+		    		모든 권한을 가집니다. 모든 시스템 권한
+		    		
+		    
+		    GRANT CONNECT, RESOURCE to FIRSTORA;
+		    
+		    GRANT CONNECT, RESOURCE to SECONDORA;
+		    
+		    
+		    Q. 사용자명 : koreaora
+		       비밀번호 : seoul1234
+		       
+		       이 사용자에게 connect, resource 권한을 부여하고
+		       이 사용자안에 두개의 테이블을 만드시오.
+		       
+		       emp_test(
+		       empno number(5) primary key,
+		       ename varchar2(20) not null,
+		       sal number(7,3),
+		       hiredate date default sysdate);
+		       
+		       
+		       dept_test(
+		       deptno number(5) primary key,
+		       dname varchar2(20) not null,
+		       loc varchar2(40));
+		       
+		       그 후, 각 테이블에 레코드 5개씩 넣으시오.
+		       
+		       
+		       
+		   
+		    
+		
+	
+
+		
+        		 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
+    				 
