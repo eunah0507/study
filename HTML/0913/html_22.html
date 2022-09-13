@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>폼 입력 그룹으로 묶기</title>
+ </head>
+ <body>
+  
+  <h3> 회원 정보를 입력해주세요</h3>
+  <hr>
+  <form>
+  	<fieldset>
+		<legend>회원정보</legend>
+		이메일 : <input type="email"><Br>
+		홈페이지 : <input type="url"><br>
+		전화번호 : <input type="tel">
+		</fieldset>
+
+ <h3> 추가정보를 입력해주세요</h3>
+  <hr>
+  <form>
+  	<fieldset>
+		<legend>추가정보</legend>
+		주소 : <input type="adress"><Br>
+		혈액형 : <input type="blood"><br>
+		MBTI : <input type="MBTI">
+		</fieldset>
+
+<!--
+<fieldset>요소는 HTML양식 속에서 그룹화 하고
+<legend> 요소로 그룹의 설명(제목)을 제공할 수 있습니다.
+여러 특성을 지정할 수 있는데, 그 중 중요한 것 하나는 
+페이지 내 <form>요소의 id르 받을 수 있는 form특성으로,
+<form>바깥의 <fieldset>요소를 해당 양식에 포함해야
+할 때 사용합니다. 다른 하나는 disabled로,
+<fieldset>의 모든 콘텐츠를 한번에 비활성화 할 수 있습니다.
+
+<fieldset> 요소는 하나의 그룹으로 묶은 요소들 주변으로 박스 모양의 선을 그려줍니다.
+또한, <legend> 요소를 사용하면 <fieldset> 요소의 캡션(caption)을 정의할 수 있습니다. -->
+
+<small> 질문 : Tel. 010-1111-1111</small><br>
+<small><small> 질문 : Tel.010-111-1111</small></small><br>
+</form>
+ </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>데이터 목록을 가진 텍스트 입력</title>
+ </head>
+ <body>
+ <h3>가보고 싶은 곳</h3>
+ <hr>
+ <form>
+ 나라 : <input type="text" name="country" list="countries"><br>
+ 		<datalist id="countries">
+			<option value="이집트">
+			<option value="스위스">
+			<option value="이스라일">
+			<option value="아르헨티나">
+		</datalist>
+
+<!-- <detailst> : 사전에 미리 정의된 옵션 목록 제시
+				  텍스트를 입력하는 필드에 사전에 미리 정의도니 드롭 다운 혀잇ㄱ의
+				  목록을 출력합니다.
+				  input의 list 속성값과
+				  datalist의 id속성의 값과 일치해야합니다. -->
+
+보고싶은 것 : <input type="text" list="what"><br>
+			<datalist id="what">
+			<option value="설악산">
+			<option value="동해바다">
+			<option value="두만강">
+		</datalist>
+
+보고싶은 것 : <input type="text" list="river"><br>
+			<datalist id="river">
+			<option value="한강">
+			<option value="두만강">
+			<option value="대동강">
+		</datalist>
+</form>
+
+
+ </body>
+</html>
