@@ -1,0 +1,100 @@
+.CSS 고급 활용
+
+  : HTML 태그가 출력되는 모양은 항상 Box Model입니다.
+    웹 페이지를 작성하는데 필요한 고급 기술입니다.
+
+
+    	. 배치
+	. 리스트 꾸미기
+	. 표 꾸미기
+	. 폼 꾸미기
+	. 애니메이션 등 동적 변화 만들기
+
+
+  : 배치
+    . display
+    . poistion
+    . left, right, top, center
+    . float
+    . z-index
+    . visiblity
+    . overview
+
+ . 블럭 태그와 인라인 태그
+   : HTML 태그는 블록 태그와 인라인 태그로 나뉩니다.
+
+   . 블럭 태그 : <p>, <h1>, <div>, <ul>
+   . 인라인 태그 : <span>, <a>, <img>
+
+ . 블럭 태그 : 새라인에서 시작, 옆에 다른 태그를 배치할 수 있음
+ . 인라인 태그 : 블럭 안에 배치, 옆에 다른 태그 배치 가능
+
+ . display : 박스 유형 제어
+
+   : display 프로퍼티를 이용하면 디폴트 박스 유형을 무시하고
+     HTML 태그 박스 유형을 달리 지정할 수 있다.
+     CSS 박스 유형은 3가지 이며 다음과 같다.
+
+     . 블럭 박스      : display : block
+     . 인라인 박스     : display : inline
+     . 인라인 블럭 박스 : display : inline-block
+
+     display:block				display:inline			display:inline-block
+
+     항상 새라인에서 시작				새라인에서 시작 못함			새라인에서 시작못함	
+     블럭박스 내에만 배치				라인 안(inline)에 있음		라인 안(inline)에 있음
+     옆에 다른 요소 배치 불가능			모든 박스내 배치 가능			모든 박스내 배치 가능
+     width와 height로 크기 조절			옆에 다른 요소 배치 가능		옆에 다른 요소 배치 가능
+     padding, border, margin 조절가능		width,height로 조정 불가능		width, height로 조정가능	
+     					margin-top,margin-botton조절 불가능		padding, border, margin조절 가능
+
+
+. position : 박스 배치
+
+  : 브라우저는 웹 페이지에 나타난 순서대로 HTML 태그를 배치합니다.
+    이를 normal flow라고 합니다. position프로퍼티를 사용하면
+    normal flow를 무시하고 원하는 위치에 박스를 배치할 수 있습니다.
+
+  : position 으로 지정할 수 있는 배치 종류는
+
+    . 정적 배치 : position static(디폴트)
+    . 상대 배치 : position relative
+    . 절대 배치 : position absolute
+    . 고정 배치 : position fixed
+    . 유동 배치 : float : left & float : right
+
+
+. z-index : 수직으로 쌓기
+
+  : z-index의 지정이 없는 경우 HTML 문서에 나오는 순서로
+    z-index 값이 자동 결정된다.
+    z-index는 position프로퍼티가 relative나 absolute, fixed인 경우에만 작동 된다.
+
+
+. visibility : 보일 것인가 숨길 것인가
+
+  : visibility 프로퍼티를 이용하면, HTML태그를 출력할 것인지 
+    숨길 것인지 지정할 수 있다.
+
+    visibility : hidden은 HTML 태그에 출력 공간을 할당한 채
+    		 보이지만 않게 한다.
+
+. overflow : 콘텐츠를 자를 것인가 말 것인가
+
+. visible : 넘치는 콘텐츠를 자르지 않고 요소의 박스를 넘어 표시한다.
+	    기본값이다.
+
+  : hidden : 넘치는 컨텐츠를 자르고 보이지 않게 한다.
+    scroll : 넘치는 컨텐츠를 자르지만 스크롤바를 항상 표시한다.
+    auto : 넘치면(높이보다) 컨텐츠를 자르지만 스크롤바가 표시된다.
+
+
+
+
+
+
+
+
+
+
+

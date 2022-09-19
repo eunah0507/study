@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>절대 배치</title>
+  <style>
+  div {
+  		display : inline-block;
+		position : absolute; /*절대배치*/
+		border : 1px solid lightgray; }
+  div > p { /*div의 자식 p*/
+  			display : inline-block;
+			position : absolute; /*절대배치*/
+			height : 20px;
+			width : 15px;
+			background : lightgray; }
+ </style>
+ </head>
+ <body>
+  <h3> Merry Christmas!</h3>
+  <hr>
+  <p> 예수님이 탄생하셨습니다. </p>
+  <div>
+  	<img src="../images/christmastree.png"
+	 width="200" height="200" alt="크리스마스트리">
+	<p style="left:50px; top:30px">M</p>
+	<p style="left:100px; top:0px">E</p>
+	<p style="left:100px; top:80px">R</p>
+	<p style="left:150px; top:110px">R</p>
+	<p style="left:30px; top:130px">Y</p>
+	<p style="left:50px; top:160px">정</p>
+	<p style="left:20px; top:30px">은</p>
+	<p style="left:80px; top:170px">아</p>
+
+	
+
+	<!-- 
+	position : absolute; 를 사용하면 HTML태그를 절대 위치에
+	배치해 둘 수 있다. 절대 위치는 left, top, bottom,right프로퍼티 값으로
+	정하며, 이 값들은 부모 태그 안에서의 상대 좌표이다.-->
+ </body>
+</html>

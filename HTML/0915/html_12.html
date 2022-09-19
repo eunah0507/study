@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>inline Test</title>
+  <style>
+  div {
+  		border : 2px solid yellowgreen;
+		color : blue;
+		background : aliceblue; }
+  div div {
+  			display: inline;
+			border: 2px dotted orangered;
+			background: powderblue;}
+</style>
+ </head>
+ <body>
+  <h3> &lt; div &gt;를 display:inline으로 </h3>
+  <hr>
+  <div style="background : orange;">
+  	<div>inline DIV</div>
+	<div>inline DIV</div>
+	<div>inline DIV</div>
+	<div>inline DIV</div>
+  </div> <!-- div~~행을 삭제해주면 다른 모습으로 나타난다--> 
+ </body>
+</html>
