@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>대입 연산</title>
+ </head>
+ <body>
+  <h3>대입 연산</h3>
+  <hr>
+  <script>
+  		var x=3, y=3, z=3;
+		document.writeln("x = " + x + ", y = " + y);
+		document.write(", z =" + z + " <br><br>");
+
+		x += 3; // x = x + 3 -> x = 6
+		y *= 3; // y = y * 3 -> y = 9
+		z %= 2; // z = z%2 -> z = 1
+
+		document.write("x += 3; 실행 후, x =" + x + "<br>");
+		document.write("y *= 3; 실행 후, y =" + y + "<br>");
+		document.write("z %= 2; 실행 후, z = " + z );
+ </script>
+
+ <!--pre 태그로 감싸면 줄바꿈이 표현된 것을 볼 수 있습니다. -->
+ <PRE>
+ <SCRIPT>
+ document.writeln("줄바뀜1,");
+ document.writeln("줄바뀜2,");
+ document.write("안바뀐다1");
+ document.write("안바뀐다2");
+ </SCRIPT>
+ </body>
+</html>
