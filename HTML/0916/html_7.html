@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>애니메이션</title>
+  <style>
+  @keyframes bomb {
+   from { font-size : 500%; }
+   to {font-size : 100%;}
+   }
+/* 애니메이션 효과를 적용하기 위해 애니메이션에 대한 키프레임(@keyframes)을 정의해야 한다.
+   키 프레임의 from에 처음 스타일을 정의하고 tod에 마지막 스타일을 정의한다.
+   또, %를 이용해 세부적으로 스타일을 정의할 수 있다.(시작0%~종료 100%)
+   */
+
+h3 { /*h3에 애니메이션을 주겠다*/
+   animation-name : bomb;
+            /*사용자가 직접 지정한 이름,@keyframes가 적용될 애니메이션의 이름*/
+   animation-duration : 3s;
+           /* 타임 프레임의 길이, 키프레임이 동작하는 시간을 설정할 때 사용
+         초(s) 단위 또는 밀리초(ms) 단위
+         default 값은 0초로 설정
+         */
+  animation-iteration-count : infinite;
+  /* 반복 횟수 지정
+     infinite : 무한 반복
+    숫자 : 숫자만큼 반복(default값은 1번)
+    */
+    }
+  @keyframes bomb2 {
+   from { font-size : 100%;}
+   to {font-size : 500%;}
+   }
+h2 { 
+   animation-name : bomb2;
+            /*사용자가 직접 지정한 이름,@keyframes가 적용될 애니메이션의 이름*/
+   animation-duration : 3s;
+           /* 타임 프레임의 길이, 키프레임이 동작하는 시간을 설정할 때 사용
+         초(s) 단위 또는 밀리초(ms) 단위
+         default 값은 0초로 설정
+         */
+  animation-iteration-count : infinite;
+  /* 반복 횟수 지정
+     infinite : 무한 반복
+    숫자 : 숫자만큼 반복(default값은 1번)
+    */
+    }
+</style>
+ 
+ </head>
+ <body>
+ <h3>꽝!</h3>
+ <hr>
+ <p> 꽝! 글자가 3초동안 500%에서
+ 시작하여 100%로 바뀌는 
+ 애니메이션 입니다. 무한 반복 입니다.</p><br>
+  <h2>팡~</h2>
+ <hr>
+ <p> 팡~ 글자가 3초동안 100%에서
+ 시작하여 500%로 바뀌는 
+ 애니메이션 입니다. 무한 반복 입니다.</p>
+  
+  
+ </body>
+</html>

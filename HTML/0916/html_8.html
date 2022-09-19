@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>전환</title>
+  <style> 
+      span {
+           transition: font-size 5s;
+
+         /* transition 는 속성의 변경이 있었을 때 일정시간에
+            속성의 변경시키는 기능 키프레임 애니메이션을
+            적용하지 않기 때문에, 미세한 움직임의 애니메이션을
+            구현한다기 보다는 간단한 움직임의 애니메이션을 구현할 때 이용*/
+           }
+       span:hover {
+                /* 5초에 걸쳐 500%까지 글자 키우는 전환 효과 시작*/
+             font-size : 500%;
+             }
+</style>
+ </head>
+ <body>
+  <h3>font-size에 대한 전환</h3>
+  <hr>
+  <p><span>꽝!</span> 글자에
+  마우스를 올려보세요.</p>
+ </body>
+</html>

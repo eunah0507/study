@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>z-index 프로퍼티</title>
+  <style>
+  #first
+  {
+  position : relative;
+  z-index : 30;
+  width : 200px;
+  height : 200px;
+  background : #3366cc;
+  }
+
+  #second
+  {
+  position : relative;
+  z-index : 20;
+  width : 200px;
+  height : 200px;
+  margin-top : -100px;
+  background : #cc3333;
+  }
+
+  #third
+  {
+  position : relative;
+  z-index : 50;
+  width : 200px; /*z-index 숫자..? 2nd 안에 3rd가 들어있어서 올라오지 못하지만 2nd>1st면 3rd가 올라온다? 이유가 뭐지?*/
+  height : 200px;
+  margin-top : -100px;
+  margin-left : 100px;
+  background : #ffaa33;
+  }
+  /*z-index 값을 적지 않으면 0으로 취급한다.*/
+  </style>
+ </head>
+ <body>
+  <h3> z-index 프로퍼티</h3>
+  <hr>
+  <div>
+  	<img id="spadeA" src="../images/spade-A.png"
+	 width="100" height="140" alt="스페이드A">
+	<img id="spade2" src="../images/spade-2.png"
+	 width="100" height="140" alt="스페이드2">
+	<img id="spaed3" src="../images/spade-3.png"
+	 width="100" height="140" alt="스페이드3">
+	<img id="spade7" src="../images/spade-7.png"
+	 width="100" height="140" alt="스페이드7">
+</div>
+
+<div id="first">
+		1st Box
+</div>
+
+<div id="second">
+		2nd Box
+		
+		<div id="third"> 
+			3rd Box
+		</div>
+</div>
+
+
+ 
+</body>
+</html>

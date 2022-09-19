@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Visibility 프로퍼티</title>
+  <style>
+  span {
+  		visibility:hidden;
+		/* display:none; */
+
+		/*
+			display:none; 스타일을 가진 태그가
+						  공간을 할당되지도 않고 보이지도 않는다
+			visibility:hidden; 스타일의 경우 태그의 공간은 할당되고
+							   보이지만 않는다
+		*/
+ </style>
+ </head>
+ <body>
+  <h3> 다음 빈 곳에 숨은 단어?</h3>
+  <hr>
+  <ul>
+  	<li> I (<span>love</span>) you.
+	<li> CSS is Cascading
+			(<span>Style</span>) Sheet.
+	<li> 응답하라 (<span>2022</span>).
+</ul>
+ </body>
+</html>
