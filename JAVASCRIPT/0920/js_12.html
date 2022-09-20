@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>do-while과 break 사용</title>
+ </head>
+ <body>
+  <h3> 암호를 입력하라!</h3>
+  <hr>
+  <script>
+  var password = "";
+  var str = "";
+  var count = 0;
+
+  do
+  {
+	  count ++;
+	  if (count>5)
+	  {
+		  str = "암호 시도 횟수가 5번을 초과하였습니다.<br>" +
+		  		"나중에 다시 시도하시오!";
+		  console.log(str); // 5번을 틀렸을 때 인터넷-검사에 보면 console에 문구가 뜨는데 여기서 나오는 것! 30초간 못하게 하려면 어떻게 해야하지?
+		  break;
+	  }
+	  password = prompt("암호를 대라", "암호");
+	  if (password == "korea")
+	  {
+		  str = "반갑습니다. <br> 통과!";
+		  break;
+	  }
+  }
+  while (true);
+  document.write(str);
+ </script>
+ </body>
+</html>

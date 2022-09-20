@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>if ~ else 문</title>
+ </head>
+ <body>
+  <h3> if-else 를 이용한 학점 매기기</h3>
+  <hr>
+  <script>
+  		var grade;
+		var score = prompt("수선화님 점수를 입력하세요", 100);
+			score = parseInt(score); //문자열을 숫자로 바꿈
+
+			if(score >= 90) // score가 90이상
+				grade = "A";
+			else if(score >= 80) // score가 80이상 90미만
+				grade = "B";
+			else if(score >= 70) // score가 70이상 80미만
+				grade = "C";			
+			else if(score >= 60) // score가 60이상 70미만
+				grade = "D";
+			else  // 60미만
+				grade = "F"; 
+		document.write(score + "는 " + grade + "입니다.<br>");
+</script>
+ </body>
+</html>
+<!--
+prompt() 함수는 사용자에게 입력을 요청하는 프롬프트 상자를 화면에 표시하기 위해 사용됩니다.
+프롬프트 상자에서 계속 진행하려면 "확인" 또는 "취소" 버튼을 클릭해야 합니다.
+첫 번째 인수는 프롬프트 상자에 표시되는 레이블이며,
+두 번째 인수는 프롬프트 상자의 텍스트 박스에 표시되는 문자열입니다.
+
+"확인" 버튼을 클릭하면 사요자가 입력한 값을 문자열로 반환하며,
+"취소" 버튼을 클릭하면 null을 반환합니다.
+-->

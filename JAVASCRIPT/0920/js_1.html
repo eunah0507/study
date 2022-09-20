@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>비트 연산</title>
+  <script>
+  function digit8(v) { // 숫자 v를 8비트 2진수로 변환
+	  var str="";
+	  for (i=0; i<8 ; i++, v<<=1)
+	  {
+		  if((v & 0x80)) str += "1";
+		  else str += "0";
+	  }
+	  return str;
+ }
+</script>
+ </head>
+ <body>
+  <h3> 비트논리 연산과 시프트 연산</h3>
+  <hr>
+ <script>
+    var x=-1,y=3;
+   document.write("<pre>");
+   document.write("x="+ x + ",y=" + y + "<br>");  //x,y값 출력
+   document.write("x :       " + digit8(x) + "<br>"); //x값 출력
+   document.write("x :       " + digit8(x) + "<br>");//y값 출력
+   document.write("<hr>");
+   document.write("x & y :   " + digit8(x&y) + "<br>");
+   document.write("x | y :   " + digit8(x|y) + "<br>");
+   document.write("x ^ y :   " + digit8(x^y) + "<br>");
+   document.write("~x :      " + digit8(~x) + "<br>");
+   document.write("<hr>");
+   document.write("x << 1 :  " + digit8(x<<1) + "(" +(x<<1) + "<br>");
+   document.write("x >> 1 :  " + digit8(x>>1) + "(" +(x>>1) + "<br>");
+   document.write("x >>> 1 : " + digit8(x>>>1) + "(" +(x>>>1) + "<br>");
+   document.write("</pre>");
+  </script>
+ </body>
+</html>
+
+<!--
+false, undefined, null, 0, NaN 또는 빈 스트링("")이 아닌 모든 값,
+그리고 false값인 불리언 객체를 포함하는 모든 객체는 조건으로 사용될 때 truthy로 간주된다.
+-->

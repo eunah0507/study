@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>문자열 연산</title>
+ </head>
+ <body>
+  <h3> 문자열 연산 </h3>
+  <hr>
+  <script>
+  	document.write("abc" + 23 + "<br>");
+	document.write(23 + "abc" + "<br>");
+	document.write(23 + "35" + "<br>");
+	document.write(23 + 35 + "<br>");
+	document.write(23 + 35 + "abc" + "<br>");
+	document.write("abc" + 23 + 35 + "<br><hr>"); //문자열 + 숫자열 = 문자열출력
+
+	var name = "seoul";
+	document.write(name == "korea");
+	document.write("<br>");
+	document.write(name < "seoua"); //문자열 순서 비교는 알파벳 순서로 한다.
+	</script>
+ </body>
+</html>
+<!--
+!=, ==, >, <, <=, >=는 문자열 비교에 그대로 사용되며
+사전에서 나오는 뒤에 나오는 문자열을 크다고 판단한다.
+-->

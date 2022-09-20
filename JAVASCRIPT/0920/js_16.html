@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JavaScript function</title>
+  <style>
+  h1 { 
+  	   font-family : Consolas;
+	 }
+  
+  h1 span { 
+  			color: #66dd33;
+		  }
+</style>
+ </head>
+ <body>
+  <script>
+  function abcFunction (name, stu) //함수 선언
+  {
+	document.write('<h1>My name is <span>' + name + '</span>. I am a <span> ' + stu + 
+	'</span>.</h1>');
+  }
+
+  abcFunction( 'King', 'student');  // 함수 호출
+  abcFunction( 'King' );			// 매개변수가 다르더라도 실행이 된다. 자바(이클립스)에서는 불가능하지만 자바스크립트에서는 가능하다.
+  abcFunction( 'King', 'student', '남자');
+ </script>
+ </body>
+</html>

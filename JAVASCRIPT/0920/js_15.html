@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>함수</title>
+    <script>
+
+  function adder(a, b) 
+	{	// 함수 선언
+	  var sum;
+	  sum = a + b;
+	  return sum;
+	}
+
+ function minus(a, b)
+	{
+		var sub;
+		sub = a - b;
+		return sub;
+	}
+</script>
+ </head>
+ <body>
+<h3>함수 adder()</h3>
+<hr>
+<script>
+var n = adder(24, 88); //함수 호출 //매개변수가 몇 개 더 있더라도 허용된다.
+var tt = minus(67, 345); //함수 호출
+
+document.write("24 + 98는 " + n + "<br>");
+document.write("67 - 345은 " + tt + "<br>");
+</script>
+
+ </body>
+</html>
+<!--
+function	=> 함수 선언을 표시하는 키워드
+adder		=> 함수 이름
+(a, b)		=> 함수를 호출하는 곳으로 부터 값을 받는 매개변수
+return		=> 함수의 실행을 종료하고 호출한 곳으로
+			   되돌아 가면서 함수의 실행 결과를 반환 함
+-->

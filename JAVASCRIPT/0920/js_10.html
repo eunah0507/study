@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>break 문</title>
+ </head>
+ <body>
+  <h3> 1에서 얼마까지 더해야 3000을 넘는가?</h3>
+
+  <hr>
+  <script>
+  var i = 0, sum = 0;
+  while(true)
+  {
+	  sum += i;
+	  if (sum > 3000)  //합이 3000보다 큼. 반복문 벗어남
+	  	  break;
+		  i++;
+   }
+	 document.write(i + "까지 더하면 3000을 넘음 : " + sum);
+</script>
+
+<h3> 13m 우물 속에 달팽이가 있습니다. 낮에는 3m 오르고 밤에는 1m 미끄러집니다. 이 달팽이는 며칠만에 우물을 벗어날 수 있습니까?</h3>
+<hr>
+<script>
+	var sum = 0;
+	var i = 0;
+
+		while (true)
+		{	
+			i++; 
+			sum+=3;
+				
+			if (sum >= 13)
+			{
+				break;
+			}
+			sum-=1; 
+		}
+
+document.write(i + "일만에 달팽이는 우물 밖으로 나갔습니다");
+</script>
+ </body>
+</html>
