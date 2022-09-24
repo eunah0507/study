@@ -1,0 +1,146 @@
+. Math 객체
+
+  : Math 객체는 수학 계산을 위해 다양한 프로퍼티와 메소드를 제공합니다.
+    Math 객체는 new Math()로 객체를 생성하지 않고
+    Math.프로퍼티 또는 Math.메소드()로 만듭니다.
+
+    메소드		의미
+
+    abs(x)		x의 절대값 리턴
+    sin(x)		sin x값 리턴
+    exp(x)		e x값 리턴
+    pow(x, y)		x의 y제곱 값 리턴
+    random()		0~1보다 작은 임의의 실수 리턴
+    floox(x)		x보다 작거나 같은 수중 가장 큰 정수 리턴
+			소숫점 이하 버림
+			
+    round(x)		x를 반올림한 정수 리턴
+    			소숫점 이하 반올림
+
+    ceil(x)		인수와 같거나 큰 수 중에서 가장 적은 정수 반환
+    			소숫점 이하를 올림
+
+    sqrt(x)		x의 제곱근 리턴
+    
+
+
+    프로퍼티		의미
+
+    E			Euler 상수
+    PI			원주율 3.141592
+
+
+
+. String 객체
+
+  : String 객체는 문자열을 다루는 객체입니다.
+    문자열은 단일 따옴표(' ') 또는 이중 따옴표(" ")안에
+    저장합니다. javascript에서 문자열은 주로 리터럴을
+    사용합니다. 하지만 new 연산자로 String객체를 생성하기도 합니다.
+
+
+		메소드			의미
+    속성		length			문자열의 길이를 구합니다.
+		
+
+		big()/small()		문자를 한단계 더 크게/더 작게
+		blink()			문자를 깜박이게 설정
+		fontsize(크기)		문자의 크기 설정
+    문자		fontcolor(색상)		문자의 색상 설정
+    		toLowerCase()		문자를 소문자로 변경
+		toUpperCase()		문자를 대문자로 변경
+		anchor(#위치표시문자)	<a name=""> 과 같은 효과
+		link(링크할 위치)		<a href=""> 와 같은 효과
+		italic()/strike()	이탤릭체/취소선 결정
+
+
+. 사용자 객체(Object) 만들기
+
+  : 개발자는 Array, String, Date 등 자바스크립트에서 제공하는
+    코어 객체(내장 객체)외에 새로운 타입의 객체를 만들어 사용할 수 있다.
+    개발자가 선언하는 새로운 객체 타입을 prototype(프로토타입)이라고 부른다.
+
+. new Object()로 객체 만들기
+
+  : 자바스크립트 코어 객체 중 Object 타입을 이용하면
+    사용자 객체를 만들 수 있습니다.
+
+. DOM(Document Obect Model) : 문서 객체 모델
+
+  : 문서 개체 모델은 document와 관련된 집합입니다.
+    문서 객체 모델을 사용해서 HTML 페이지에 태그를 추가
+    제거, 수정할 수 있습니다. DOM은 반드시 HTML만 가능한 것이
+    아닙니다. HTML, XML, 사용자 정의 등 다양합니다.
+
+
+    . HTML 의 DOM 구조
+
+    					document
+					   |
+					  html
+					   |
+		head						body
+		  |						  |
+		title				P				form		
+		  |				|				  |
+		text			       span		input		input		hr
+						|		  |		  |		|
+					       text		 text		 text		text
+
+ 
+ . document 객체의 요소를 추출하는 메소드 선택자는
+   크게 2가지로 구분할 수 있습니다.
+   요소 속성 명으로 선택해 오는 원거리 선택자와
+   가까이에 있는 요소를 선택하는 근거리 선택자가 있습니다.
+
+
+   메소드						의미
+
+   getElementById("id명")			태그의 id명이 일치하는 문서 객체를 가져오는 선택자
+
+   getElementByName("name"명)			태그의 name명이 일치하는 문서 객체를 가져오는 선택자
+
+   getElementByTagName("tag"명)			태그의 tag명이 일치하는 문서 객체를 가져오는 선택자
+
+   : 브라우저는 HTML 페이지를 로드하는 과정에서 각 HTML 태그를
+     하나의 객체로 만든다. 예를들어 <p> ...</p> 로 구성된 요소는
+     p 객체로, <div> ...</div> 로 구성된 요소는 div 객체로 생성된다.
+
+     이들은 HTML 문서의 각 요소를 개체화한 것이라는 뜻으로
+     HTML DOM객체라고 부른다. HTML DOM은 W3C의 표준이므로
+     모든 브라우저에서 호환된다.
+
+
+. DOM의 목적
+
+  : DOM객체는 HTML 페이지에 작성된 각 HTML 태그를 객체로 만든 것이다.
+    HTML페이지가 출력된 후, DOM객체를 통해 HTML태그가 출력된 모양과
+    콘텐츠를 제어하기 위해서이다.
+
+    DOM 객체의 종류는 HTML태그 종류만큼 있다.
+    하지만 document 객체는 DOM 객체가 아니다.
+
+. DOM 객체의 구성 요소
+
+. HTML 태그의 요소
+
+  : HTML 태그는 element라고도 불리며 다음의 5가지 요소로 구성된다
+
+  <p id="firstP" style="color:blue" onclick="this.style.color='red' ">
+
+  		이것은 <span style="color:green">문장입니다. </span>
+  </p>
+
+  1. p : 태그(element)
+  2. id : 이름
+  3. style : CSS3 스타일
+  4. onclick : 이벤트 리스너
+  5. 이것은 <span style="color:green">문장입니다 : 콘텐츠
+
+
+  . property : DOM객체의 멤버 변수로서 HTML 태그 element를 반영
+  . method : DOM 객체의 멤버 함수로서, HTML태그를 제어하는데 활용
+  . collection : 정보를 집합적으로 표현하는 일종의 배열
+  . event listener : 자바스크립트 코드를 이용하여 직접 DOM 객체에 이벤트 리스너 등록
+  . CSS3 style : style 프로퍼티를 통해 HTML 태그에 적용된
+  		 CSS3 스타일시트를 접근할 수 있다.

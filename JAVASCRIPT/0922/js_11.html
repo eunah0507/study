@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>프로퍼티</title>
+  <script>
+  			//User 생성자 함수
+	function User(name, age)
+	{
+		this.name = name;
+		this.age = age;
+		this.view = function()
+		{
+			document.write('나의 이름은' + this.name + '이고, 나이는' + this.age + '세 입니다.<br>');
+		}
+	}
+	//인스턴스 생성
+	var ob1=new User('kim', 25);
+	var ob2=new User('lee', 28);
+	ob1.view();
+	ob2.view();
+</script>
+ </head>
+ <body>
+  <hr>
+  <h2>포로토타입 Test2</h2>
+ </body>
+</html>

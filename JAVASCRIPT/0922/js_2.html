@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Math를 활용한 곱셈</title>
+  <script>
+  		function randomInt()
+		{			//math.floor=소수점 이하는 버리겠다. //math.random = 1 ~ 9 난수값 리턴
+			return Math.floor(Math.random() * 9) + 1;
+		}
+  </script>
+ </head>
+ <body>
+  <h3>Math를 활용한 곱셈</h3>
+  <hr>
+  <script>
+  	//곱셈 문제 생성
+	var ques = randomInt() + " * " + randomInt() + " / " + randomInt();
+	//사용자로부터 답 입력
+
+	var user = prompt(ques + " 값은 얼마입니까? " , 0);
+
+		if (user == null) //취소버튼이 클릭된 경우
+		{
+			document.write("구구단 연습을 종료합니다");
+		}
+		else
+		{
+			var ans = Math.floor(eval(ques)); // 구구단 정답 계산, eval=함수
+			if(ans == user) //정답과 사용자 입력 비교
+				document.write("정답 ! ");
+			else
+				document.write("Stone 이냐 ! ");
+			document.write(ques  + " = " + "<strong>" + ans + "</strong> 입니다. <br>");
+		}
+</script>
+ </body>
+</html>

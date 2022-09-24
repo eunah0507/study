@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>getElementById Test</title>
+  <script>
+  		function process1() 
+		{
+			var ob=document.getElementById("txt").value;
+			document.getElementById("view1").innerText=ob;
+		}
+
+		function process2()
+		{
+			var ob=document.querySelector("#txt").value;
+			document.querySelector("#view2").innerHTML=ob;
+		}
+		function process3()
+		{
+			var ob=document.querySelector("#txt").value;
+			document.querySelector("#view3").innerHTML=ob;
+		}
+</script>
+ </head>
+ <body>
+  <input type="text" id="txt" size="30" name="text">
+  <input type="button" value="출력1" onclick="process1()">
+  <input type="button" value="출력2" onclick="process2()">
+  <input type="button" value="출력3" onclick="process3()">
+  <br><br><br>
+  <div id="view1"></div><br>
+  <div id="view2"></div><br>
+  <div id="view3"></div>
+ </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>CSS 스타일 동적 변경</title>
+  <script>
+  function change()
+  {
+	  var span1 = document.getElementById("mySpan1"); // id가 mySpan1인 객체
+	  span1.style.color = "green";					  // 글자색 green
+	  span1.style.fontSize = "30px";				 // 글자크기는 30픽셀
+	  span1.style.display = "block";				//블록박스로 변경
+	  span1.style.width = "6em";					//박스의 폭 6배 글자 크기
+	  span1.style.border = "3px dotted magenta";     // 3픽셀 점선 magenta테두리
+	  span1.style.margin = "20px";					 // 상하 좌우 여백 20px
+	  var span2 = document.getElementById("mySpan2");
+	  span2.style.color = "blue";					  
+	  span2.style.fontSize = "20px";				 // 글자크기는 30픽셀
+	  span2.style.display = "block";				//블록박스로 변경
+	  span2.style.width = "2em";					//박스의 폭 6배 글자 크기
+	  span2.style.border = "5px dotted magenta";     // 3픽셀 점선 magenta테두리
+	  span2.style.margin = "60px";					 // 상하 좌우 여백 20px
+   }
+   </script>
+ </head>
+ <body>
+  <h3>CSS스타일 동적 변경</h3>
+  <hr>
+  <p style="color:blue"> 이것은
+  		<span id="mySpan1" style="color:red"> 1문장입니다.		</span>&nbsp;&nbsp;&nbsp;
+		<span id="mySpan2" style="color:red"> 2문장입니다.		</span>
+  </p>
+  <input type="button" value="스타일변경" onclick="change()">
+ </body>
+</html>
