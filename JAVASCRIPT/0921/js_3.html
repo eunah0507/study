@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>자바스크립트 내장함수</title>
+  <script>
+  function evalParseIntIsNaN () {
+	   var res = eval("2*3+4*6"); //res는 30
+	   document.write("eval(\"2*3+4*6\")는 " + res + "<br><br>");
+
+	   var m = parseInt("32"); //문자열 "32"를 숫자화 시킴
+	   document.write("parseInt(\"32\")는 " + m + "<br><br>");	   
+
+	   var n = parseInt("0x32"); //"0x32"를 숫자화 시켜서16진수 계산인데..  
+	   document.write("parseInt(\"0x32\")는 " + n + "<br><br>");
+       
+	   var n2= parseInt("032");//parseInt를 쓰면 032에 0은 의미없는 숫자가 돼 그래서 밑에 값이랑 차이가 있어
+	   //var n2 = 032; //얘는 8진수..? 26나와
+	   document.write("parseInt(\"032\")는 " + n2 + "<br><br>");
+
+       //"hello"는 정수로 변환할 수 없으므로 parseInt("hello")는 NaN 리턴
+	   n = parseInt("hello");
+
+	   if(isNaN(n)) //true
+	     document.write("hello는 숫자가 아닙니다.");
+		 }
+</script>
+</head>
+ <body>
+ <h3>eval(), parseInt(), isNaN() 함수 사용</h3>
+ <hr>
+ <script>
+   evalParseIntIsNaN();//함수 호출
+ </script>
+  
+ </body>
+</html>

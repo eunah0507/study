@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>숫자 맞추기 게임</title>
+  
+  <script>
+        
+		var computerNumber = 53;       //정답
+		var nGuesses = 0;             // 추측함수
+
+		function guess() {
+			var result = "";         //결과 메시지
+
+			       //사용자가 입력한 값을 받아서 변수 number에 대입한다.
+            var number = parseInt(document.querySelector("#user").value);  //숫자를 입력하고 확인 버튼이 클릭 되었을 때 값을 읽어다가 숫자화 시켰다
+			    nGuesses++;
+
+			    if (number == computerNumber) result = " 축하합니다 성공입니다.";
+				else if (number > computerNumber) result = " 좀 낮습니다.";
+				else result = " 좀 높습니다.";
+				
+				document.querySelector("#result").value = result;
+				document.querySelector("#guesses").value = nGuesses;
+				return true;
+				}
+        </script>
+ </head>
+ <body>
+ <h2>숫자 맞추기 게임</h2>
+    이 게임은 컴퓨터와 숫자를 맞추는 게임입니다. 숫자는 1부터 100 사이에 있습니다.
+	<hr size="5" color="green">
+
+	<form>
+	   숫자 :
+	   <input type="text" id="user" size="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   <input type="button" value="확인" onclick="guess()";><br>
+
+	   시도 횟수 :
+	   <input type="text" id="guesses" size="7">
+	   힌트 :
+	   <input type="text" id="result" size="20">
+	   </form>
+
+	   
+
+  
+ </body>
+</html>

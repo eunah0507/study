@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title> innerHTML </title>
+  <script>
+  function testInnerHTML(){
+
+	  var str ="";
+	  str += "<table bgcolor='#cccc66'>";
+	  str += "<tr>";
+	  str += "<td>";
+	  str += "HTML 태그를 삽입할 수 없습니다.";
+	  str += "</td>";
+	  str += "</tr>";
+	  str += "</table>";
+
+document.querySelector("#inHere1").innerHTML =str;
+}
+
+function testInnerHTML2() {
+
+	  var str ="";
+	  str += "<table bgcolor='#33cc66'>";
+	  str += "<tr>";
+	  str += "<td>";
+	  str += "HTML 태그를 삽입할 수 없습니다 2222.";
+	  str += "</td>";
+	  str += "</tr>";
+	  str += "</table>";	
+
+document.querySelector("#inHere2").innerHTML =str;
+}
+</script>
+
+ </head>
+ <body>
+
+ <table width="100%" border="0">
+
+   <tr>
+     <td width="100%">
+
+	 <input type="button" name="btn1" value="클릭 시 innerHTML 출력"
+	 onclick="javascript:testInnerHTML();">
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 <div id="inHere1"></div>
+	 </td>
+	 </tr>
+
+	 <tr>
+	 <td width="100%">
+
+	   <input type="button" name="btn2" value="클릭 시 innerHTML 출력" onclick="testInnerHTML2();">
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 <div id="inHere2"></div>
+	 </td>
+	 </tr>
+</table>
+
+
+  
+ </body>
+</html>
