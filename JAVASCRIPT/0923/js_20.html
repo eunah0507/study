@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>random background</title>
+  <script>
+   function randomBackground() {
+     var kbs = document.getElementById("kbs");
+     var r = Math.floor(Math.random()*256);
+     var g = Math.floor(Math.random()*256);
+     var b = Math.floor(Math.random()*256);
+     var a = Math.random();
+     document.body.style.backgroundColor =
+         "rgba(" + r + "," + g + "," + b + "," + a + ")";
+      kbs.style.color = 
+          "rgb(" + g + "," + b + "," + r + ")";
+        }
+   </script>
+ </head>
+ <body ondblclick="randomBackground()">
+ <h3>바탕 아무 곳에나 더블 클릭</h3>
+ <hr>
+ <p id="kbs">바탕 아무곳이나 <strong>더블클릭</strong>하면
+ 배경색이 랜덤하게 변합니다.
+ </p>
+  
+ </body>
+</html>

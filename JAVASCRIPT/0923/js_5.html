@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>this test</title>
+  <script>
+  		function change(obj, size, color, bgcolor)
+		{
+			obj.style.color=color;
+			obj.style.fontSize=size;
+			obj.style.backgroundColor=bgcolor;
+		}
+  </script>
+ </head>
+ <body>
+  <h3>this 활용</h3>
+  <hr>
+  <button onclick="change(this, '30px', 'red', 'skyblue')">버튼</button>
+  <button onclick="change(this, '45px', 'blue' , '#ccffff')">버튼</button><br>
+  <hr>
+  <!--
+  this를 쓰면 id를 설정할 필요가 없다.
+  -->
+  <div onclick="change(this, '35px', 'green', '#99ffff')">
+  										여기, 클릭하면 크기와 색 변경
+</div>
+ </body>
+</html>

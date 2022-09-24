@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>document.write() 사용시 주의할 점</title>
+ </head>
+ <body onclick="document.write('<h3>클릭되었습니다.</h3>')">
+ <h3>write()를 잘못 사용하는 예</h3>
+ <hr>
+ <p> 웹 브라우저의 바탕 아무곳에나 클릭해보세요</p>
+
+  
+ </body>
+</html>
+
+<!--
+HTML 텍스트를 HTML문서에 추가하기 위해 
+docuement.write()를 사용한다. 하지만 HTML문서가 로드되어 출력이 모두
+이루어지고 나면 docuement객체가 닫히기 때문에 더 이상 HTML 텍스트를
+추가(출력)할 수 없다. document 객체가 닫힌 후 document.write()가
+실행되면 현재 HTML문서가 지워지고 새 문서가 작성되는 결과를 보여준다.
+-->
