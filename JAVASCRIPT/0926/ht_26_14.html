@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>window.location으로 웹사이트 접속</title>
+  <script>
+  function load()
+  {
+	  var select = document.getElementById("site");
+
+	  window.location=select.options[select.selectedIndex].value;
+  }
+ </script>
+ </head>
+ <body>
+  <h3>window.location으로 웹사이트 접속</h3>
+  <hr>
+  사이트 선택 :
+  <select id="site">
+		<option value="http://www.naver.com" selected>네이버
+		<option value="http://www.google.com">구글
+		<option value="http://www.microsoft.com">마이크로소프트
+  </select>
+  <p>
+  <button onclick="load()">웹 사이트 접속</button>
+ </body>
+</html>
+<!--
+현재 브라우저에 표시된 HTML 문서의 주소를 얻거나, 브라우저에서 새 문서를 불러올 때 사용할 수 있다
+이 객체는 window객체의 location프로퍼티와 document객체의 location프로퍼티에 같이 연결되어 있다.
+location객체의 프로퍼티와 메소드를 이용하면, 현재 문서의 url주소를 다양하게 해석하여 처리할 수 있다.
+-->

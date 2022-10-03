@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>라디오 버튼 선택</title>
+  <script>
+  function findChecked()
+  {
+	  var found = null;
+	  var kcity = document.getElementsByName("city");
+	  var div = document.getElementById("div");
+	 // var text = document.getElementById("text");
+
+	  for (var i=0; i<kcity.length; i++)
+	  {
+		  if (kcity[i].checked == true)
+			found = kcity[i];
+	  }
+
+	  if (found != null) {
+		alert(found.value + "이 선택되었음");
+		div.innerHTML = found.value; 
+		}
+	  else {
+	  	alert("선택된 것이 없음"); 
+		div.innerHTML = found.value; 
+		}
+  }
+ </script>
+ </head>
+ <body>
+  <h3>버튼을 클릭하면 선택된 라디오 버튼의 value를 출력합니다.</h3>
+  <form>
+  	<input type="radio" name="city" value="seoul">서울
+	<input type="radio" name="city" value="busan">부산
+	<input type="radio" name="city" value="inchon">인천
+	<input type="radio" name="city" value="chunchen">춘천
+
+	<br>
+		<input type="button" value="find checked" onclick="findChecked()">
+<!--<div style="background-color:#66ccff" height="100" width="150">라디오<input id="text">가 선택되었습니다.</div>-->
+<div id="div" style="color:red"
+</form>
+ </body>
+</html>

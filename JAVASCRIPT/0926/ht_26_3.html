@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>random background</title>
+  <script>
+  function randomBackground(obj) {
+	  var r = Math.floor(Math.random()*256);
+	  var g = Math.floor(Math.random()*256);
+	  var b = Math.floor(Math.random()*256);
+
+	  obj.style.backgroundColor = 
+	      "rgb(" + r + "," + g + "," + b + ")";
+	}
+</script>
+ </head>
+ <body>
+ <h3> div 클릭 </h3>
+ <hr>
+ <div onclick="randomBackground(this)">div 아무 곳이나 <strong>클릭11</strong>하면
+ 배경색이 랜덤하게 변합니다.
+ </div>
+ <div onclick="randomBackground(this)">div 아무 곳이나 <strong>클릭22</strong>하면
+ 배경색이 랜덤하게 변합니다.
+ </div>
+ <div onclick="randomBackground(this)">div 아무 곳이나 <strong>클릭33</strong>하면
+ 배경색이 랜덤하게 변합니다.
+ </div>
+
+ <p>span 태그에 대해서만 <span onclick="randomBackground(this)">마우스</span>가 올라올 때
+ 밑줄이 그어지고 <span onclick="randomBackground(this)">마우스</span>가 내려갈 때 밑줄이 사라짐
+  
+<!-- <p onclick="randomBackground(this)">span 태그에 대해서만 <span >마우스</span>가 올라올 때
+ 밑줄이 그어지고 <span>마우스</span>가 내려갈 때 밑줄이 사라짐 -->
+
+<!-- <p onclick="randomBackground(this)">span 태그에 대해서만 <span>마우스</span>가 올라올 때
+ 밑줄이 그어지고 <span onclick="randomBackground(this)">마우스</span>가 내려갈 때 밑줄이 사라짐-->
+ </body>
+</html>
