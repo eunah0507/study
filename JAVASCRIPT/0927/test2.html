@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>history test.html 객체</title>
+  <script>
+  document.write("방문한 페이지 수 : " + history.length);
+  </script>
+ </head>
+ <body>
+  <h3>History 객체연습(세번째 페이지)</h3>
+   <a href="test3.html">다음페이지</a><br><br>
+   <input type="button" value="이전으로3" onclick="javascript:history.back()">
+  <input type="button" value="다음으로3" onclick="history.forward()">
+  <input type="button" value="처음으로3" onclick="history.go(-2)">
+ </body>
+</html>

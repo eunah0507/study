@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>location 객체</title>
+  <script>
+  		var t = new Date();
+		document.write(t.getHours() + ":" + t.getMinutes()+":"+t.getSeconds());
+
+		setInterval(function()
+		{
+			location.reload(); // 현재 문서를 리로드하는 방법
+		},1000);
+
+  document.write("<br>현재 문서의 주소는 " + location.href + "입니다.");
+
+  console.log(location.toString(), location.href);
+
+  document.write("<br>현재 문서의 호스트 이름은 " + location.hostname + "입니다.");
+  document.write("<br>현재 문서의 파일 경로명은 " + location.pathname + "입니다.");
+</script>
+ </head>
+ <body>
+  
+ </body>
+</html>
+<!--
+Location 객체는 문서의 주소와 관련된 객체로 window객체의 프로퍼티다.
+이 객체를 이용해서 윈도우의 문서 URL을 변경할 수 있고, 문서의 위치와 관련해서 다양한 정보를 얻어올 수 있다.
+
+웹페이지의 특정 부분을 주기적으로 업데티으 해줘야 하거나,
+어떤 API로부터 변경된 데이터를 주기적으로 받아와야 하는 경우가 있는데,
+이럴 때는 자바스크립트의 setIntrval()함수를 사용할 수 이씁니다.
+setInterval()함수는 어떤 코드를 일정시간 간격을 두고 반복해서 실행하고 싶을 때 사용합니다.
+-->

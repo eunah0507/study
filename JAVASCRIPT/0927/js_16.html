@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>웹 페이지의 자동 스크롤</title>
+  <script>
+  function startScroll(interval)
+  {
+	  setInterval("autoScroll()", interval);
+  }
+
+  function autoScroll()
+  {
+	window.scrollBy(0,10); //10픽셀 위로 스크롤
+  }
+</script>
+ </head>
+ <body onload="startScroll(1000)">
+  <h3> 자동 스크롤 페이지</h3>
+  <hr>
+  <h3>꿈길(이동순)</h3>
+  꿈길에<br>
+  발자취가 있다면<br>
+  님의 집 창밖<br>
+  그 돌계단 길이 이미 오래 전에<br>
+  모래가 되고 말았을 거에요<br>
+  하지만<br>
+  그 꿈길에서 자취 없다 하니<br>
+  나는 그것이 정말 서러워요<br>
+  이 밤도<br>
+  나는 님의 창 밖<br>
+  그 돌계단 위에 홀로 서서<br>
+  혹시라도 님의 목소리가 들려올까<br>
+  고개 숙이고 엿들어요<br>
+ </body>
+</html>
+<!--
+1. scrollBy( x, y)
+     상대적 위치
+
+     현재 위치를 기준으로 파라메티 값으로 넘겨준 만큼 이동합니다.
+     창을 상대적인 좌표로 스크롤합니다.
+
+     //scroll(가로 스크롤 값, 세로 스크롤 값);
+         window.scrollBy( 100, 100);
+                              현재 스크롤 위치에서 x스크롤을 100만큼,
+                        y 스크롤을 100만큼 이동시킵니다.
+       
+
+2. scrollTo(x, y)
+	절대적 위치
+
+	왼쪽 상단 모서리부터 시작하여 전체 스크롤 값을 기준으로
+	파라메터로 넘겨준 값으로 이동합니다.
+	(현재 위치가 아닌 상단 모서리를 기준으로 합니다.)
+
+	창을 절대적인 좌표로 이동합니다.
+
+	// scrollTo(가로 스크롤 위치 값, 세로 스크롤 위치 값);
+		window.scrollTo(100, 100);
+		위 메소드들의 차이점, 기준점 그리고 절대적인지
+		상대적인지에 대해 차이가 있습니다.
+-->
