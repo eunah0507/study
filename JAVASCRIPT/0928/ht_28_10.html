@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>drawCircle() 만들기</title>
+  <script>
+  function drawCircle(ctx, x, y, radius) {
+	           ctx.beginPath();
+			   ctx.arc(x, y, radius, 0, 2*Math.PI); //2*Math.PI얘로 인해서 각도 마음대로 설정 가능해
+			   ctx.stroke();
+			   }
+   /* 
+   arc(x,y,반지름,시작 각도, 끝 각도, 방향 설정)
+   방향 설정 : false(기본 값) : 시계 방향, true : 반시계방향
+   */
+ </script>
+ </head>
+ <body>
+  <h3>drawCircle() 만들기</h3>
+  <hr>
+  <canvas id="myCanvas" width="220" height="220"
+          style="background-color:aliceblue"></canvas>
+  <script>
+  var canvas = document.getElementById("myCanvas");
+  var context = canvas.getContext("2d");
+  drawCircle(context, 100, 100, 80);
+  drawCircle(context, 150, 150, 30);
+  </script>
+ </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>JSON 배열</title>
+  <script> 
+  function init() {
+	  var emp = [{"name" : "kim","age" : 30},
+            	 {"name" : "lee","age" : 40},
+	             {"name" : "park","age" : 20}]
+      var msg="";
+	  msg += "이름 : " + emp[0].name + "<br>나이 : " + emp[0].age + "<br><br>";//배열을 가져올 때는 인덱스로 가져옴 emp[0]
+	  msg += "이름 : " + emp[1].name + "<br>나이 : " + emp[1].age + "<br><br>";
+	  msg += "이름 : " + emp[2].name + "<br>나이 : " + emp[2].age + "<br><br>";
+	  msg += "이름 : " + emp[2].name + "<br>나이 : " + emp[2]["age"] + "<br><br>";  //emp[2] 참고 해서 인덱스 불러오는 방법 2가지 확인하기 
+	  document.getElementById("result").innerHTML=msg;
+	  }
+	  </script>
+ </head>
+ <body onload="init()">
+ <h2>JSON 표기법</h2>
+ <div id="result"></div>
+  
+ </body>
+</html>
