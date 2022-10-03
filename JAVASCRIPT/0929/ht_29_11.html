@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지오로케이션</title>
+    <script>
+        function showPosition(pos) {
+            document.getElementById("demo").innerHTML="위도 : " + pos.coords.latitude + "<br>경도 : " + pos.coords.longitude;
+        }
+
+        function locationEventHandler() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+
+            } else {
+                document.getElementById("demo").innerHTML="브라우저가 Geolocation을 지원하지 않습니다.";
+            }
+        }
+        
+        //geolocation API는 사용자의 현재 위치 정보를 가져올 때 사용하는 자바스크립트API이다.
+        //사용자의 위도 및 경도에 관한 정보는 자바스크립트를 이용해 웹서버로 전송됩니다.
+
+
+        
+    </script>
+</head>
+<body>
+    <p>현재 위치가 궁금한가요?</p>
+    <button onclick="locationEventHandler()">위도/경도</button>
+    <br><br>
+    <p id="demo"></p>
+    
+</body>
+</html>

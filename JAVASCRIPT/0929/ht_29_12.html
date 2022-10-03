@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지오로케이션</title>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA7X8g-mkeSjNTYu5usrHHKv1Xx92jgWs"></script>
+      <script>
+       // var myCenter = new google.maps.LatLng(37.56163, 127.03452);
+        var myCenter = new google.maps.LatLng(37.295035, 126.916854);
+
+        function myMap()
+        {
+            var mapProp = {
+                center : myCenter,
+                zoom:5,
+                mapTypeId:google.maps.MapTypeId.ROADMAP};
+
+                var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+                var marker = new google.maps.Marker({position:myCenter,animation:google.maps.Animation.BOUNCE//마커 애니메이션
+                });
+                marker.setMap(map);
+            
+        }
+      </script>
+</head>
+<body onload="myMap()">
+    <div id="googleMap" style="width: 500px; height: 380px;"></div>
+    
+</body>
+</html>

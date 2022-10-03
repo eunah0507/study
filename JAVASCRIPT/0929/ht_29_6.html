@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>MY TITLE</title>
+  <style>
+  #shopping_cart{
+  width:610px;
+  height:100px;
+  padding:10px;
+  border:1px dotted red;
+  }
+ img {
+ width:100px;
+ height:100px;
+ }
+ </style>
+ <script>
+   function allowDrop(ev) {
+	   ev.preventDefault();
+	   //기본적으로 요소나 데이터는 다른 요소에 drop 될 수 없음
+	   // drop이 가능하도록 요소의 기본적인 속성을 차단함
+	   }
+	function drag(ev){
+		ev.dataTransfer.setData("text", ev.target.id);
+		//drop 이벤트가 발생하는 요소 id 의 text(img1,img2,...)를 저장함
+		}
+   function drop(ev) {
+	   ev.preventDefault();
+	   var data = ev.dataTransfer.getData("text");
+	   //저장한 text요소를 가져옴
+	   ev.target.appendChild(document.getElementById(data));
+	   //가져온 text를 target에 추가
+	   }
+	   /*
+	   drag and drop API : 
+
+	   드래그앤 드롭 API 는 웹 페이지 내의 요소를 사용자가 자유롭게 드래그 할 수 있도록 설정해 줍니다.
+	   HTML5 이전에 이와 같은 기능을 구현하기 위해선 엄청나게 많고 복잡한 스크립트를 작성해야 했습니다.
+	   하지만 HTML5 에서는 드래그 앤 드롭 기능이 ㄱ표준 권고안에 포함되오ㅓ 간단하게 사용할 수 있게 되었습니다.
+	   현재 주요 웹 브라우저들은 모두 이기능을 지원하며 따라서 웹 페이지 내의 모든 요소는 드래그될 수 있습니다.
+
+	   . DataTransfer 객체 :
+	          드래그 앤 드롭 이벤트를 위한 모든 
+			  이벤트 리스너 메소드는 
+			  DataTransfer객체를 반환합니다.
+      이렇게 반환된 DataTransfer객체는 드래그 앤 드롭 동작에 관한 정보를 가지고 있게 됩니다.
+
+	  . draggable속성 :
+	         웹 페이지 내의 모든 요소는 draggable 속성을 사용하여 드래그될 수 있는
+			 객체로 변환 될 수 있습니다.
+
+	  . ondragstart 속성 :
+	       드래그 될 수 있는 객체로 만든 후에는 ondragstart 속성을 통해 DataTransfer 객체의
+		   setData()메소드를 호출합니다.
+		   setData()메소드는 드래그되는 대상 객체의 데이터와 데이터 타입을 설정합니다.
+       
+	  . ondragover속성 : 
+	         ondragover 속성은 드래그되는 대상 객체가 어느 요소 위에 놓일 수 있는지를 설정합니다.
+			 기본적으로 HTML 요소는 다른 요소의 위에 위치할 수 있습니다.
+			 따라서 다른 요소 위에 위치할 수 있도록 만들기 위해서는 놓일 장소에 있는 요소의 기본 동작을 막아야만 합니다.
+
+			 이 작업을 event.preventDefault()메소드를 호출하는 것만으로 간단히 설정랄 수 있습니다.
+
+	  . ondrop 속성 :
+	       드래그하던 객체를 놓으면 drop이벤트가 발생합니다.
+		   ondrop속성을 이용하여 드롭 이벤트에 대한 동작을 설정할 수 있습니다.
+		   */
+
+
+</script>
+ </head>
+ <body>
+ <p> 원하는 상품을 카트에 담으세요</p>
+ <div id="shopping_cart" ondrop="drop(event)" ondragover="allowDrop(event)"></div><br>
+ <img id="img1" src="../images/back1.jpg" draggable="true" ondragstart="drag(event)">
+ <img id="img2" src="../images/back2.jpg" draggable="true" ondragstart="drag(event)">
+ <img id="img3" src="../images/back3.jpg" draggable="true" ondragstart="drag(event)">
+ <img id="img4" src="../images/back4.jpg" draggable="true" ondragstart="drag(event)">
+ <img id="img5" src="../images/back5.jpg" draggable="true" ondragstart="drag(event)">
+ <img id="img6" src="../images/back6.jpg" draggable="true" ondragstart="drag(event)">
+ <div id="shopping_cart" ondrop="drop(event)" ondragover="allowDrop(event)"></div><br> 
+ <div id="shopping_cart" ondrop="drop(event)" ondragover="allowDrop(event)"></div><br>
+ </body>
+</html>

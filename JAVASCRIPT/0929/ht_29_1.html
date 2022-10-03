@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Event => addEventListener,removeEventListener</title>
+  <script>
+     var color1;
+	 var color2;
+	 var color3;
+	 var btnExample;
+
+	 window.onload = function() {
+		 color1 = document.getElementById("green");
+		 color2 = document.getElementById("red");
+		 color3 = document.getElementById("blue");
+		 btnExample=document.getElementById("btnExample");
+		 color1.addEventListener("mouseover",changecolor);
+		 color2.addEventListener("mouseover",changecolor2);
+		 color3.addEventListener("mouseover",changecolor3);
+		 btnExample.addEventListener("click", btnExampleClickHandler);
+		 }
+
+		 /*
+		  
+		  . addEventListener()는 EventTarget의 주어진 이벤트 유형에
+		    EventListener를 구현한 함수 또는 객체를 이벤트 처리기 목록에 추가해 작동합니다.
+		    "click" => 반응할 이벤트 유형을 나타내는 대소문자 구분 문자열.
+
+		  . removeEventListener()메서드는 
+		    이전에 EventTarget.addEventListener()로 EventTarget에 등록했던
+		    이벤트 리스너를 제거합니다.
+		   
+          . addEventListener(1,2,3)
+		  
+		    1. 이벤트 명: 이벤트 리스너를 등록할 이벤트 타입을 문자열로 전달합니다.
+		    2. 실행할 이벤트 리스너 : 지정된 이벤트가 발생했을 때 실행할 이벤트 리스너를 전달합니다.
+			3. 이벤트 전파 방식 : false면 버블링(bubbling)방식으로, true면 캡쳐링(capturing)방식으로 이벤트를 전파합니다.
+		 */
+		 
+
+		 function changecolor() {
+			 s1.style.color = 'green';
+			 }
+		 function changecolor2() {
+			 s1.style.color = 'red';
+			 }
+		 function changecolor3() {
+			 s1.style.color = 'blue';
+			 s1.style.background='yellow'
+			 }
+         function btnExampleClickHandler() {
+			 alert("메세지입니다. 저는 다시는 보이지 않습니다.");
+			 btnExample.removeEventListener("click",btnExampleClickHandler);
+			 }
+     </script>
+
+		 
+
+ </head>
+ <body>
+ <h1 id="s1">change color change color</h1><br    />
+
+   마우스만 올려도 색깔 바꾸는 버튼: <br>
+   위 id = "s1"의 색깔이 바뀝니다.<br>
+
+   <button id ="green">green</button>
+   <button id ="red">red</button>
+   <button id ="blue">blue</button>
+   <button id ="btnExample">한번만 메세지 띄우는 버튼</button>
+  
+ </body>
+</html>
