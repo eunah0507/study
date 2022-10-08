@@ -1,0 +1,99 @@
+
+ . response
+ 
+   : 내장 객체 response는 서버가 클라이언트에게 요청에 대한 
+     응답을 보내기 위한 객체이다.
+     내장 객체 response의 자료 유형인 HttpServeletResponse 는 상위
+     인터페이스로 ServeletResponse를 가지며 다음과 같은 메소드를 가지고 있다.
+     
+     반환값           메소드                                  사용용도
+     
+     void          addCookie(Cookie cookie)                쿠키 데이터 기록
+     
+     void          addHeader(String name, String value)    response 헤더 내용 기록
+     
+     void          sendRedirect(String location)           지정된 location 페이지로 이동
+     
+     void          setBufferSize(int size)                 버퍼크기 지정
+     
+     void          setContentType(String type)             Content type 지정
+     
+     int           getBufferSize(int size)                 버퍼 크기 반환
+     
+     //set은 값 설정  get은 값 가져오는 것
+     
+     
+     
+      . application
+      
+        : 내장 객체 application 은 javax.servlet.ServletContext의 인터페이스 자료 유형으로
+          웹 어플리케이션에서 유지 관리되는 여러 환경 정보를 관리한다.
+          여기서 웹 어플리케이션이란 여러개의 서블릿과 JSP로 구성되는 웹 서비스 응용 프로그램 단위로
+          내자 ㅇ객체 application은 서블릿과 서버간의 자료를 교환하는 여러 메소드를 제공한다
+          
+          
+          반환값          메소드                                      사용 용도
+          
+          String        getServerInfo                              JSP 컨테이너 이름과 버전 반환
+          
+          Object        getAttribute(String name)                  웹 응용 프로그램에서 지정된 이름의 속성은 반환
+          
+          void          long(String msg)                           지정된 msg의 로그를 저장
+          
+          void          setAttribute(String name, Object object)   웹 응용에서 지정된 이름으로 object 을저장
+          
+          void          removeAttribute(String name)               웹 응용에서 지정된 이름의 속성을 삭제
+          
+          
+          
+          
+    . pageContext
+    
+    
+      : 내장 객체 pageContext 는 자료 유형 클래스 javax.servlet.PageContext로 
+        JSP 페이지에 관한 정보와 다른 페이지로 제어권을 넘겨 줄 때 이용하는 메소드를 제공한다.
+        
+        반환값                  메소드                 사용용도
+        
+        void                  forward(String)       다른 서블릿 혹은 JSP 로 요청을 이동
+        
+        void                  include(String)       지정된 페이지를 현재 위치에 삽입
+        
+        Exception             getException()        Exception 객체를 반환
+        
+        Object                getPage()             page객체를 반환
+        
+        HttpSession           getSession()          HttpSession 객체를 반환
+        
+        
+     . 액션 태그
+     
+       : JSP 액션 태그는 XML 스타일의 태그로 기술하며 특정한 동작 기능을 수행한다.
+         JSP 액션 태그느 ㄴ다음과 같이 '<' 와 접두어 jsp: 를 사용한다.
+         
+       종류   
+       
+       태그 종류                태그 형식                                          사용 용도
+       
+       include               <jsp:include page="test.jsp" />                   현재 jsp 페이지에 다른 페이지 삽입(결과 삽입)
+       
+       param                 <jsp:include page="test.jsp" />
+                                 <jsp:param name="id" value="korea" />
+                             </jsp:include>
+       
+       include               <jsp:forward page="test.jsp" />                   현재 jsp 페이지의 제어를 다른 페이지에 전달
+       
+       param                 <jsp:forward page="test.jsp" />
+                                 <jsp:param name="id" value="seoul" />
+                             </jsp:forward>                           
+                             
+       plugin                <jsp:plugin  type="applet" code="test" />          자바 애플릿 등을 플러그인
+        
+       useBean               <jsp:useBean  id="login" class="LoginBean"  />     자바빈즈 사용
+       
+       setProperty           <jsp:setProperty name="login" property="pass" />   자바빈즈 속성을 지정하는 메소드 호출
+       
+       getProperty           <jsp: getProperty name="login" property="pass" />  자바빈즈 속성을 반환하는 메소드 호출                     
+       (자바의 속성 중 은닉화 set,get 사용) 
+        
+              

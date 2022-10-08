@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sendredirect test</title>
+</head>
+<body>
+
+<h2> 검색할 단어를 입력하세요 </h2>
+
+<hr size="5" color="red">
+
+<form action="sendredirect_1.jsp" method="get"> 
+
+검색할 곳을 선택하세요<p>
+ 
+네이버 <input type="radio" name="search" value="네이버"><br>
+구글 <input type="radio" name="search" value="구글"><br>
+다음 <input type="radio" name="search" value="다음"><br>
+
+<!--
+<select name="search">
+<option value ="네이버">네이버</option>
+<option value ="구글">구글</option>
+<option value ="다음">다음</option>
+</select>
+-->
+
+검색 키워드 : <input type="text" name="word"><p> 
+
+<input type="submit" value="보내기">&nbsp;&nbsp;
+<input type="reset" value="취소">
+
+ 
+
+</form>
+
+</body>
+</html>
