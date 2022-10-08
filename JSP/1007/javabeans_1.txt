@@ -1,0 +1,99 @@
+. Java Beans(자바 빈즈)
+
+  : JSP 프로그램의 장점중 하나는 비즈니스 로직 부분과 프리젠테이션 부분을
+    나눠 코딩할 수 있다는 점이다.
+    
+    그러나 지금까지는 JSP프로그램은 하나의 JSP프로그램 내부에 로직 부분의
+    java코드와 프리젠테이션 부분의 HTML 코드가 복잡하게 구성되어 사용하였습니다.
+    
+    자바빈즈는 프로그램의 비즈니스 로직부분과 프리젠테이션 부분을 분리해서
+    비즈니스 로직부분을 담당하는 자바프로그램 단위라 할 수 있습니다.
+    
+    그러므로 자바빈즈를 사용하면 JSP 페이지가 복잡한 java 코드로 구성되는 것을 ㅍ하고
+    JSP페이지에는 HTML코드와 쉽고 간단한 자바 코드만을 구성할 수 있습니다.
+    
+    하나의 큰 프로그램에서 독립적으로 수행되는 하나의 작은 프로그램을 Component라고 부릅니다.
+    자바빈즈는 자바 프로그램에서의 컴포넌트이며
+    넓은 의미로 자바빈즈는 자바의 모든 클래스를 의미합니다.
+    
+    . 자바빈즈의 구성
+    
+      : 자바빈즈는 일단 자바 클래스입니다.
+        자바빈즈는 member variables 인 field(필드)와 method로 구성됩니다.
+        
+        자바빈즈의 필드는 일반적으로 외부에서 참조할 수 없도록 private로 선언되며
+        메소드는 외부에서 자바빈즈의 필드를 참조하기 위해 public으로 선언된
+        getter, setter를 제공합니다.
+        
+    
+    
+    . 자바빈즈 태그
+    
+    
+    액션									의미
+    
+    <jsp:useBean id="login" />			JSP와 연관시켜 자바빈즈를 생성
+    
+    <jsp:setProperty name="login" />	생성된 자바빈즈의 객체를 이용해 setter에 속성값 전달
+    
+    <jsp:getProperty name="login" />	생성된 자바빈즈의 객체를 이용해 getter로 속성값 반환
+    
+    
+    
+    액션						속성					값 유형				의미
+    
+    						id					String				JSP페이지내에서 자바빈즈의 참조 변수를 저장하는 변수이름을 지정
+    						class				String				생성할 자바빈즈 클래스 이름
+    <jsp:useBean ../>		scope				page
+    											request				자바빈즈 유효 범위를 나타내며 지정하지 않으면 page가 디폴트
+    											session
+    											aplication
+    											
+    						name				String				<jsp:useBean>에서 지정한 id로 지정
+    <jsp:setProperty ../>	property			String				자바빈즈의 setter()의 이름 setName()에서
+    																set를 제거한 name로 지정하며 값이'*'이면
+    																파라미터의 모든 값을 의미
+    																
+    						param				String				속성 property와 함께 쓰이며, 지정된
+    																파라미터로 전달받은 파라미터의 이름을 지정
+    																
+    						value				String				속성 property와 함께 쓰이며, 자바빈즈의 setter()의
+    																setName(value)에 지정하는 인자 값인 value 지정
+    						
+    						
+    						name				String				<jsp:useBean>에서 지정한 id로 지정
+    <jsp:getProperty ../> 	property			String				자바빈즈 getter()이름 getName()에서
+    																name으로 지정
+   
+   
+   
+   . SCOPE
+   
+   액션					의미
+   
+   page					자바빈즈가 현재의 jsp페이지 내에서만 사용 가능하며 기본값
+   						가장 좁은 범위의 scope
+   						
+   request				JSP페이지는 request객체가 영향을 미치는 모든 JSP페이지까지
+   						자바빈즈 이용 가능
+   						
+   session				세션이 유효한 페이지까지 자바빈즈 이용 가능
+   						
+   application			응용 프로그램의 모든 페이지에서 자바빈즈 객체의 사용이 가능하며
+   						가장 넓은 범위의 scope 값
+   						
+   
+   
+   <jsp:useBean id="test" class="ClassName" scope="page"/>
+   
+    		=> <% ClassName test = new ClassName(); %>
+    		
+   <jsp:setProperty name="test" property="korea" value="수선화"/>
+   			
+   			=> <% test.setKorea("수선화"); %>
+   			
+   <jsp:getProperty name = "test" property="name" />
+   
+   			=> <% test.getName(); %>
+   
+      
