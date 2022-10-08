@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>request_2.html</title>
+</head>
+<body>
+<h2>학생 정보 입력</h2>
+<form action="request_2.jsp" method="post">
+
+학번 : <input type="text" name="studentNum"><p>
+전공 : <select multiple="multiple" name="major">
+		<option value="전산과">전산과</option>
+		<option value="국문과" selected="selected">국문과</option>
+		<option value="기계과">기계과</option>
+		<option value="문학창작과">문학창작과</option>
+		<option value="영문과">영문과</option>
+		<option value="수학과">수학과</option>
+	</select><p>
+	
+취미 : <select multiple="multiple" name="hobby">
+		<option value="등산">등산</option>
+		<option value="낚시" selected="seleceted">낚시</option>
+		<option value="독서">독서</option>
+		<option value="멍때리기" selected="selected">멍때리기</option>
+		<option value="자전거타기">자전거타기</option>
+		<option value="수영">수영</option>
+	</select><p>
+
+좋아하는 꽃 이름 : <select multiple="multiple" name="flower">
+		<option value="튤립">튤립</option>
+		<option value="장미" selected="selected">장미</option>
+		<option value="작약">작약</option>
+		<option value="해바라기" selected="selected">해바라기</option>
+		<option value="달리아">달리아</option>
+		<option value="백합">백합</option>
+</select><p>
+
+	<input type="submit" value="보내기">
+
+</form>
+</body>
+</html>

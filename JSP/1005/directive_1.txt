@@ -1,0 +1,109 @@
+. Directive(지시자)
+
+  : 지시자는 일반적인 프로그램 언어와는 달리 태그 형식을 이용하여 JSP 페이지에
+    대한 속성 또는 특별한 지시 사항을 지정하는 태그입니다.
+    
+    
+    종류					형태								의미
+    
+    page		<%@ page property="property-value" %>	JSP 페이지에 대한 속성 지정
+    
+    include		<%@ include file="file-name" %>			태그 부분에 지정한 페이지를	
+    													정적으로 삽입
+    
+    taglib		<%@ taglib uri="uri-value"				새로운 태그를 정의하여 사용
+    				prefix="prefix-value" %>
+    				
+    
+    
+    : Implicit Object(내장 객체)
+    
+      : 내장 객체란 JSP 페이지의 스크립트릿과 표현에서 객체의 생성 없이
+        이용할 수 있는 객체 변수를 말합니다.
+        
+        즉, 웹 브라우저의 출력에 이용하던 out는 JSP 서블릿의 _jspService()
+        메소드에서 자동으로 선언되므로 JSP 페이지의 스크립트릿에서 생성과
+        선언 없이 out.print()을 바로 사용할 수 있습니다.
+        
+        내장객체		패키지					클래스이름						사용 용도
+        
+        request		javax.servlet.http		HttpServletRequest(I)		클라이언트 요청에 의한
+        									(I)=interface				폼 양식 정보 처리
+        
+        response	javax.servlet.http		HttpServletResponse(I)		클라이언트 요청에 대한 응답
+        
+        session		javax.servlet.http		HttpSession(I)				클라이언트에 대한 세션 정보 처리
+        
+        application	jacax.servlet			ServletContext(I)			웹 어플리케이션 정보처리
+        
+        config		javax.servlet			ServletConfig(I)			현재 JSP페이지에 대한 환경처리
+        
+        exception	java.lang				Throwable(I)				예외처리를 위한 객체
+        
+        page		java.lang				Object(C)					현재 JSP페이지에 대한 클래스 정보
+        									c=class
+        pageContect java.servlet.jsp		PageContext(C)				현재 JSP페이지에 대한 페이지 컨텍스트
+        
+        out			javax.servlet.jsp		JspWriter(C)				출력 스트림
+        
+        
+        
+. request의 자료 유형과 인자 전달
+
+  : 내장 객체 request는 클라이언트가 서버에게 전송하는 정보를
+    처리하는 객체입니다.
+    즉, HTML폼에 입력하여 값을 전송하는 경우, 내장객체 request를 사용합니다.
+    
+    내장객체 request는 인터페이스 HttpervletRequest로 상위 인터페이스는
+    Javax.servlet.ServletRequest를 갖습니다.
+    그러므로 내장 객체 request는 아래와 같은 여러 메소드를 사용할 수 있습니다.
+    
+    반환값		메소드								사용 용도
+    
+    void		setCharacterEncoding(String env)	요청 페이지에 인코딩 방법 적용
+    
+    String		getParameter(String name)			name의 요청 인자값을 반환
+    												없으면 null 만일 여러개의 값이면
+    												첫번째 값만 반환
+    
+    String[]	getParameterValues(String name)		지정한 name 요청 인자값을
+    												문자열 배열로 반환
+    												
+    Enumeration	getParameterNames()					모든 인자의 이름을 Enumeration으로 반환
+    
+	String		getProtocol()						사용중인 프로토콜 반환
+	
+	String		getRemoteAddr()						클라이언트의 IP주소 반환
+	
+	String		getRemoteHost()						클라이언트의 호스트이름을 반환
+	
+	String		getSererName()						요청된 서버의 호스트이름을 반환
+	
+	int			getServerPort()						요청된 서버의 포트 번호를 반환
+	
+	
+	
+	반환값			메소드				사용용도
+	
+	Cookie[]		getCookies()		클라이언트에 보내진 쿠키 배열을 반환
+	
+	String			getQueryString()	URL에 추가된 Query 문자열 반환
+	
+	String			getRequestURI()		클라이언트가 요청한 URI반환, URI는 프로토콜, 서버이름,
+										포트번호를 제외한 서버의 컨텍스트와 파일의 문자열
+										
+	ex) http://localhost:8088/first_jsp/jsp_12/request_3.jsp에서
+		URI => first_jsp/jsp_12/request_3.jsp
+		
+	String			getRequestURL()		클라이언트가 요청한 URL 반환 URL은 프로토콜과 함께
+										주소부분에 기술된 모든 문자열
+										
+	ex)	URL => http://localhost:8088/first_jsp/jsp_12/requset_3.jsp
+	
+	HttpSession		getSession()		현재의 세션을 반환, 세션이 없으면 새로 만들어 반환
+	
+	String			getMethod()			요청방식인 get,post 중의 하나를 반환
+	
+	jsp class docs => https://docs.oracle.com/javaee/7/api/toc.htm
+							
+    	
